@@ -5,8 +5,6 @@ import SEO from "../components/seo"
 import Container from '../components/container/container'
 import Box from '../components/box/box'
 
-import posed from 'react-pose'
-
 const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
