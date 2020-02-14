@@ -105,7 +105,11 @@ class Sequencer {
       // update
       this._workingArray = this._algorithm(this._workingArray);
       this._processingCount++;
-      this._update(this._workingArray);
+      this._update({
+        array: this._workingArray,
+        count: this._processingCount,
+        startTime: this._startTime,
+      });
     }
   }
 
