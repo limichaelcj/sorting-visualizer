@@ -18,12 +18,21 @@ const IndexPage = () => {
     }
   `)
 
+  const generateArray = (count) => {
+    const size = count || 50;
+    const arr = [];
+    while(arr.length < size) {
+      arr.push(Math.floor(Math.random()*100) + 1);
+    }
+    return arr.map((value,id) => ({ id, value }))
+  }
+
  return (
     <Layout>
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
-        <Array />
+        <Array items={generateArray()} />
       </Container>
     </Layout>
   )

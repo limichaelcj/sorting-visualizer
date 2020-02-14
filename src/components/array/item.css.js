@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
-export default styled.figure`
+export default styled.div`
   flex: 1 1 auto;
-  min-width: 4px;
   ${props => `
     height: ${props.size}%;
-    background-color: ${props => props.active ? 'red' : 'black'};
+    background-color: ${props.active ? 'red' : 'black'};
   `}
 
   &:not(:first-child) {

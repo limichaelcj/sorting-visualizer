@@ -6,4 +6,13 @@ const ArrayItem = ({ size, active }) => {
   return <StyledItem size={size} active={active} />
 }
 
+ArrayItem.propTypes = {
+  size: PropTypes.number.isRequired,
+  active: PropTypes.bool,
+}
+
+ArrayItem.defaultProps = {
+  active: false,
+}
+
 export default ArrayItem
