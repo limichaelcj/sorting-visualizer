@@ -3,8 +3,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from '../components/container/container'
-import Box from '../components/box/box'
 import Title from '../components/title/title'
+import Array from '../components/array/array'
 
 const IndexPage = () => {
 
@@ -23,8 +23,7 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
-        <Box size={10} color='#222' />
-        <Box  color='#222' />
+        <Array />
       </Container>
     </Layout>
   )
