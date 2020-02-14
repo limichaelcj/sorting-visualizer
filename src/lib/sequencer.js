@@ -14,10 +14,6 @@ class Sequencer {
     return this;
   }
 
-  _requireFunctionError(name) {
-
-  }
-
   set algorithm(func){
     if (typeof func !== "function") {
       throw new Error(`Sequencer algorithm must be a function.`);
