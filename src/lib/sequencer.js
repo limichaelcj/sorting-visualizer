@@ -110,12 +110,8 @@ class Sequencer {
   }
 
   _endProcess(){
-    console.log('end process');
+    console.log(`Algorithm complete with ${this._processingCount} iterations`);
     // cleanup
-    // delete this._workingArray;
-    // delete this._currentQueue;
-    // delete this._lastFrame;
-    // delete this._startFrame;
   }
 
 }
