@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from '../components/container/container'
 import Box from '../components/box/box'
+import Title from '../components/title/title'
 
 const IndexPage = () => {
 
@@ -21,7 +22,7 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" />
       <Container>
-        <h1>{data.site.siteMetadata.title}</h1>
+        <Title>{data.site.siteMetadata.title}</Title>
         <Box size={10} color='#222' />
         <Box  color='#222' />
       </Container>
