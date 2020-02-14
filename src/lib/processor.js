@@ -25,7 +25,6 @@ class Processor {
       throw new Error(`Processor algorithm must be a function.`);
     }
     this._algorithm = func;
-    return this;
   }
 
   set update(func) {
@@ -33,7 +32,6 @@ class Processor {
       throw new Error(`Processor updater must be a function.`);
     }
     this._update = func;
-    return this;
   }
 
   set condition(func) {
@@ -41,7 +39,6 @@ class Processor {
       throw new Error(`Processor condition must be a function.`);
     }
     this._condition = func;
-    return this;
   }
 
   run(data){
