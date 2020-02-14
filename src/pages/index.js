@@ -5,6 +5,8 @@ import SEO from "../components/seo"
 import Container from '../components/container/container'
 import Title from '../components/title/title'
 import Array from '../components/array/array'
+import Sequencer from '../lib/sequencer'
+import { generateArray } from '../lib/array'
 
 const IndexPage = () => {
 
@@ -16,23 +18,24 @@ const IndexPage = () => {
         }
       }
     }
-  `)
+  `);
 
-  const generateArray = (count) => {
-    const size = count || 50;
-    const arr = [];
-    while(arr.length < size) {
-      arr.push(Math.floor(Math.random()*100) + 1);
-    }
-    return arr.map((value,id) => ({ id, value }))
-  }
+  const [state, setState] = React.useState(generateArray(16));
 
- return (
+  React.useEffect(() => {
+    const sequence = new Sequencer();
+    sequence.update = arr => setState(arr);
+    sequence.algorithm = arr => [arr[arr.length-1]].concat(arr.slice(0,arr.length-1));
+    sequence.condition = state => state.count > 100;
+    sequence.run(state);
+  }, [])
+
+  return (
     <Layout>
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
-        <Array items={generateArray()} />
+        <Array items={state} />
       </Container>
     </Layout>
   )
