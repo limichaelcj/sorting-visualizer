@@ -1,7 +1,7 @@
-class Sequencer {
+class Processor {
 
   static fps = 15;
-  static fpsInterval = 1000 / Sequencer.fps;
+  static fpsInterval = 1000 / Processor.fps;
   static processingLimit = 1000;
 
   constructor(algorithm, updater, condition) {
@@ -16,7 +16,7 @@ class Sequencer {
 
   set algorithm(func){
     if (typeof func !== "function") {
-      throw new Error(`Sequencer algorithm must be a function.`);
+      throw new Error(`Processor algorithm must be a function.`);
     }
 
     // test algorithm function before setting
@@ -37,7 +37,7 @@ class Sequencer {
 
   set update(func) {
     if (typeof func !== "function") {
-      throw new Error(`Sequencer updater must be a function.`);
+      throw new Error(`Processor updater must be a function.`);
     }
     this._update = func;
     return this;
@@ -45,7 +45,7 @@ class Sequencer {
 
   set condition(func) {
     if (typeof func !== "function") {
-      throw new Error(`Sequencer condition must be a function.`);
+      throw new Error(`Processor condition must be a function.`);
     }
     this._condition = func;
     return this;
@@ -53,13 +53,13 @@ class Sequencer {
 
   run(arr){
     if (!this._algorithm) {
-      throw new Error('Sequencer requires an algorithm function.');
+      throw new Error('Processor requires an algorithm function.');
     }
     if (!this._update) {
-      throw new Error('Sequencer requires an update function.');
+      throw new Error('Processor requires an update function.');
     }
     if (!this._condition) {
-      throw new Error('Sequencer requires a condition function.');
+      throw new Error('Processor requires a condition function.');
     }
 
     this._startProcess(arr);
@@ -80,7 +80,7 @@ class Sequencer {
       array: this._workingArray,
       count: this._processingCount,
       startTime: this._startTime,
-    }) || this._processingCount >= Sequencer.processingLimit) {
+    }) || this._processingCount >= Processor.processingLimit) {
       return this._endProcess();
     }
 
@@ -92,11 +92,11 @@ class Sequencer {
     const elapsed = now - this._lastFrame;
 
     // draw next frame if enough time has elapsed
-    if (elapsed >= Sequencer.fpsInterval) {
+    if (elapsed >= Processor.fpsInterval) {
 
       // Get ready for next frame by updating last frame to now, but also adjust
       // for your fps not being a multiple of RAF's interval (16.7ms)
-      this._lastFrame = now - ( elapsed % Sequencer.fpsInterval );
+      this._lastFrame = now - ( elapsed % Processor.fpsInterval );
 
       // update
       this._workingArray = this._algorithm(this._workingArray);
@@ -116,4 +116,4 @@ class Sequencer {
 
 }
 
-export default Sequencer
+export default Processor
