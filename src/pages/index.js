@@ -25,11 +25,18 @@ const IndexPage = () => {
     array: generateArray(16),
     counter: 0,
   });
-  const processor = new Processor(
-    (arr) => [arr[arr.length-1]].concat(arr.slice(0,arr.length-1)),
-    (state) => setState({...state, array: state.array, counter: state.count}),
-    (state) => state.count >= 100
-  );
+
+  const processor = new Processor({
+    algorithm: (stt) => [stt.data[stt.data.length-1]].concat(stt.data.slice(0,stt.data.length-1)),
+    initialState: {
+      counter: 0,
+    },
+    update: (stt) => {
+      stt.counter++;
+      setState({...stt, array: stt.data, counter: stt.meta.iterations});
+    },
+    condition: (stt) => stt.counter >= stt.meta.initialState.counter + 100,
+  });
 
   const handleStartProcess = () => {
     setState({...state, counter: 0})

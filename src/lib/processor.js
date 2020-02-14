@@ -2,35 +2,28 @@ class Processor {
 
   static fps = 15;
   static fpsInterval = 1000 / Processor.fps;
-  static processingLimit = 1000;
+  static processLimit = 1000;
 
-  constructor(algorithm, updater, condition) {
+  constructor({algorithm, update, condition, initialState}) {
     // the algorithm function to process an array
     this._algorithm = algorithm || null;
     // callback function to update view after each algorithm run
-    this._update = updater || null;
+    this._update = update || null;
     // end condition
     this._condition = condition || null;
+    // initial state
+    this._initialState = initialState || {};
     return this;
+  }
+
+  set initialState(state) {
+    this._initialState = state;
   }
 
   set algorithm(func){
     if (typeof func !== "function") {
       throw new Error(`Processor algorithm must be a function.`);
     }
-
-    // test algorithm function before setting
-    const testArray = [1,2]
-    const out = func(testArray);
-    // function must return an array
-    if ( typeof out !== "object" || out.constructor.name !== "Array" ) {
-      throw new Error('Invalid return type in step function.');
-    }
-    // function must not mutate array size
-    if (out.length !== testArray.length) {
-      throw new Error('Step function mutates array size.');
-    }
-    // set algorithm function
     this._algorithm = func;
     return this;
   }
@@ -51,7 +44,7 @@ class Processor {
     return this;
   }
 
-  run(arr){
+  run(data){
     if (!this._algorithm) {
       throw new Error('Processor requires an algorithm function.');
     }
@@ -62,25 +55,25 @@ class Processor {
       throw new Error('Processor requires a condition function.');
     }
 
-    this._startProcess(arr);
-  }
 
-  _startProcess(arr){
-    // initialize processing variables
-    this._workingArray = arr.slice();
-    this._processingCount = 0;
-    this._lastFrame = Date.now();
-    this._startTime = this._lastTime;
+    // initialize processing state
+    const now = Date.now();
+    this._state = {
+      ...this._initialState,
+      data,
+      meta: {
+        iterations: 0,
+        startTime: now,
+        lastFrame: now,
+        initialState: {...this._initialState},
+      },
+    };
     this._process();
   }
 
   _process(){
     // check if process should end
-    if (this._condition({
-      array: this._workingArray,
-      count: this._processingCount,
-      startTime: this._startTime,
-    }) || this._processingCount >= Processor.processingLimit) {
+    if (this._condition(this._state) || this._state.meta.iterations >= Processor.processLimit) {
       return this._endProcess();
     }
 
@@ -89,28 +82,24 @@ class Processor {
 
     // calculate elapsed time
     const now = Date.now();
-    const elapsed = now - this._lastFrame;
+    const elapsed = now - this._state.meta.lastFrame;
 
     // draw next frame if enough time has elapsed
     if (elapsed >= Processor.fpsInterval) {
 
       // Get ready for next frame by updating last frame to now, but also adjust
       // for your fps not being a multiple of RAF's interval (16.7ms)
-      this._lastFrame = now - ( elapsed % Processor.fpsInterval );
+      this._state.meta.lastFrame = now - ( elapsed % Processor.fpsInterval );
 
       // update
-      this._workingArray = this._algorithm(this._workingArray);
-      this._processingCount++;
-      this._update({
-        array: this._workingArray,
-        count: this._processingCount,
-        startTime: this._startTime,
-      });
+      this._state.data = this._algorithm(this._state);
+      this._state.meta.iterations++;
+      this._update(this._state);
     }
   }
 
   _endProcess(){
-    console.log(`Algorithm complete with ${this._processingCount} iterations`);
+    console.log(`Algorithm complete with ${this._state.meta.iterations} iterations`);
     // cleanup
   }
 
