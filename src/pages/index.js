@@ -10,6 +10,12 @@ import { generateArray } from '../lib/array'
 
 import insertionSort from '../lib/algorithms/insertion'
 
+const initialState = () => ({
+  array: generateArray(100),
+  current: null,
+  counter: 0,
+})
+
 const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -22,11 +28,7 @@ const IndexPage = () => {
     }
   `);
 
-  const [state, setState] = React.useState({
-    array: generateArray(100),
-    current: null,
-    counter: 0,
-  });
+  const [state, setState] = React.useState(initialState());
 
   React.useEffect(() => {
     insertionSort.update = (stt) => {
@@ -41,6 +43,13 @@ const IndexPage = () => {
     };
   }, [])
 
+  const handleReset = () => {
+    setState({
+      ...state,
+      ...initialState(),
+    })
+  }
+
   const handleStartProcess = () => {
     setState(state => ({...state, counter: 0}));
     insertionSort.run(state.array);
@@ -53,6 +62,7 @@ const IndexPage = () => {
         <Title>{data.site.siteMetadata.title}</Title>
         <Array items={state.array} current={state.current} swap={state.swap} />
         <pre>Iterations: {state.counter}</pre>
+        <Button onClick={handleReset}>Reset</Button>
         <Button onClick={handleStartProcess}>Start</Button>
       </Container>
     </Layout>

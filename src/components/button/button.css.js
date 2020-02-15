@@ -9,6 +9,9 @@ export default styled.button`
   margin-top: 0.5rem;
   cursor: pointer;
 
+  &:not(:first-of-type) {
+    margin-left: 1rem;
+  }
   &:hover {
     background-color: rgba(0,0,0,0.1);
   }
