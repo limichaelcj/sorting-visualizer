@@ -4,15 +4,15 @@ class Processor {
   static fpsInterval = 1000 / Processor.fps;
   static processLimit = 1000;
 
-  constructor({algorithm, update, condition, initialState}) {
+  constructor(options = {}) {
     // the algorithm function to process an array
-    this._algorithm = algorithm || null;
+    this._algorithm = options.algorithm || null;
     // callback function to update view after each algorithm run
-    this._update = update || null;
+    this._update = options.update || null;
     // end condition
-    this._condition = condition || null;
+    this._condition = options.condition || null;
     // initial state
-    this._initialState = initialState || {};
+    this._initialState = options.initialState || {};
     return this;
   }
 

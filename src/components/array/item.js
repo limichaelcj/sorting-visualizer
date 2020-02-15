@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledItem from './item.css'
 
-const ArrayItem = ({ size, active }) => {
-  return <StyledItem size={size} active={active} />
+const ArrayItem = ({ size, current }) => {
+  return <StyledItem size={size} current={current} />
 }
 
 ArrayItem.propTypes = {
   size: PropTypes.number.isRequired,
-  active: PropTypes.bool,
+  current: PropTypes.bool,
 }
 
 ArrayItem.defaultProps = {
-  active: false,
+  current: false,
 }
 
 export default ArrayItem

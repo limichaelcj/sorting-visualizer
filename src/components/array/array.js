@@ -6,14 +6,18 @@ import Center from '../ui/center'
 
 // items: array of objects = { id: int, value: int }
 
-const Array = ({ items }) => {
+const Array = ({ items, current }) => {
 
   const max = Math.max(...items.map(item => item.value))
 
   return (
     <StyledArray>
       {items.length > 0 ? items.map((item,i) => (
-        <Item key={item.id} size={(item.value / max) * 100} />
+        <Item
+          key={item.id}
+          size={(item.value / max) * 100}
+          current={current === item.id}
+        />
       )) : (
         <Center>✘</Center>
       )}
@@ -23,6 +27,7 @@ const Array = ({ items }) => {
 
 Array.propTypes = {
   items: PropTypes.array,
+  current: PropTypes.number,
 }
 
 Array.defaultProps = {
