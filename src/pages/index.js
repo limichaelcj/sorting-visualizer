@@ -15,6 +15,7 @@ const initialState = () => ({
   current: null,
   counter: 0,
   running: false,
+  algorithm: null,
 })
 
 const IndexPage = () => {
@@ -30,6 +31,36 @@ const IndexPage = () => {
   `);
 
   const [state, setState] = React.useState(initialState());
+
+  const algorithm = {
+    insertionSort,
+  }
+
+  const handler = {
+    reset: () => {
+      // reset algorithm
+      if (state.algorithm) {
+        algorithm[state.algorithm].reset();
+      }
+      // reset page state
+      setState(initialState());
+    },
+    start: (name) => () => {
+      algorithm[name].run(state.array);
+      setState(state => ({
+        ...state,
+        algorithm: name,
+        running: true,
+      }));
+    },
+    pause: (name) => () => {
+      algorithm[name].pause();
+      setState(state => ({
+        ...state,
+        running: false,
+      }))
+    },
+  }
 
   React.useEffect(() => {
     insertionSort.frame = 120;
@@ -52,25 +83,7 @@ const IndexPage = () => {
         running: false,
       }));
     };
-  }, [])
-
-  const handleReset = () => {
-    insertionSort.reset();
-    setState({
-      ...state,
-      ...initialState(),
-    })
-  }
-
-  const handleStartInsertion = () => {
-    insertionSort.run(state.array);
-    setState(state => ({...state, running: true}));
-  }
-
-  const handlePauseInsertion = () => {
-    insertionSort.pause();
-    setState(state => ({...state, running: false }));
-  }
+  }, []);
 
   return (
     <Layout>
@@ -79,10 +92,18 @@ const IndexPage = () => {
         <Title>{data.site.siteMetadata.title}</Title>
         <Array items={state.array} current={state.current} swap={state.swap} />
         <pre>Iterations: {state.counter}</pre>
-        <Button onClick={handleReset}>Reset</Button>
-        <Button onClick={insertionSort.isRunning ? handlePauseInsertion : handleStartInsertion} disabled={insertionSort.isComplete}>
-          {insertionSort.isRunning ? 'Pause' : 'Start'}
-        </Button>
+        <Button onClick={handler.reset}>Reset</Button>
+
+        {/* Button for each algorithm */}
+        {Object.entries(algorithm).map(([name, algo], index) => (
+          <Button
+            onClick={algo.isRunning ? handler.pause(name) : handler.start(name)}
+            disabled={state.algorithm === null ? false : algo.isComplete || state.algorithm !== name}
+          >
+            {algo.isRunning ? `Pause ${name}` : `Start ${name}`}
+          </Button>
+        ))}
+        
       </Container>
     </Layout>
   )
