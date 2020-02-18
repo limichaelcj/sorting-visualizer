@@ -33,20 +33,20 @@ const IndexPage = () => {
 
   React.useEffect(() => {
     insertionSort.frame = 120;
-    insertionSort.permit = function(stt) {
+    insertionSort.permit = function(processState) {
       return this.isRunning;
     }
-    insertionSort.update = (stt) => {
-      const { data, index, current, meta} = stt;
+    insertionSort.update = (processState) => {
+      const { data, index, current, meta} = processState;
       setState(state => ({
         ...state,
         array: data,
         current,
         counter: meta.iterations,
       }));
-      stt.index += 1;
+      processState.index += 1;
     };
-    insertionSort.onComplete = (stt) => {
+    insertionSort.onComplete = (processState) => {
       setState(state => ({
         ...state,
         running: false,
@@ -72,16 +72,6 @@ const IndexPage = () => {
     setState(state => ({...state, running: false }));
   }
 
-  const InsertionSortButton = () => {
-    const isComplete = insertionSort.isComplete;
-    const isRunning = insertionSort.isRunning;
-    return (
-      <Button onClick={isComplete ? null : isRunning ? handlePause : handleStart} disabled={isComplete}>
-        {isComplete ? 'Done' : isRunning ? 'Pause' : 'Start'}
-      </Button>
-    );
-  }
-
   const handleProcessControl = insertionSort.isRunning ? handlePause : handleStart;
 
   return (
@@ -92,7 +82,9 @@ const IndexPage = () => {
         <Array items={state.array} current={state.current} swap={state.swap} />
         <pre>Iterations: {state.counter}</pre>
         <Button onClick={handleReset}>Reset</Button>
-        <InsertionSortButton />
+        <Button onClick={insertionSort.isRunning ? handlePause : handleStart} disabled={insertionSort.isComplete}>
+          {insertionSort.isRunning ? 'Pause' : 'Start'}
+        </Button>
       </Container>
     </Layout>
   )

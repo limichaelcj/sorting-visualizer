@@ -203,6 +203,7 @@ class Processor {
 
   _endProcess(){
     console.log(`Algorithm complete with ${this._state.meta.iterations} iterations`);
+    this._isRunning = false;
     this._isComplete = true;
     this._shouldReset = true;
     // custom cleanup
