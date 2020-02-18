@@ -6,7 +6,7 @@ import Center from '../ui/center'
 
 // items: array of objects = { id: int, value: int }
 
-const Array = ({ items, current }) => {
+const Array = ({ items, selected, scanning }) => {
 
   const max = Math.max(...items.map(item => item.value));
 
@@ -18,7 +18,8 @@ const Array = ({ items, current }) => {
           index={i}
           id={item.id}
           size={(item.value / max) * 100}
-          current={current === item.id}
+          selected={selected === item.id}
+          scanning={scanning === i}
         />
       )) : (
         <Center>✘</Center>
@@ -30,6 +31,7 @@ const Array = ({ items, current }) => {
 Array.propTypes = {
   items: PropTypes.array,
   current: PropTypes.number,
+  scanning: PropTypes.number,
 }
 
 Array.defaultProps = {

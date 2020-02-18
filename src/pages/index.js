@@ -11,12 +11,16 @@ import { generateArray } from '../lib/array'
 import insertionSort from '../lib/algorithms/insertionSort'
 import selectionSort from '../lib/algorithms/selectionSort'
 
+// initial state used for React page state
 const initialState = () => ({
   array: generateArray(100),
-  current: null,
   counter: 0,
   running: false,
+  // name of algorithm for mapping purposes
   algorithm: null,
+  // index positions of algorithm
+  selected: null,
+  scanning: null,
 })
 
 const IndexPage = () => {
@@ -35,9 +39,10 @@ const IndexPage = () => {
 
   const algorithm = {
     insertionSort,
-    selectionSort,
+    // selectionSort,
   }
 
+  // algorithm control handlers
   const handler = {
     reset: () => {
       // reset algorithm
@@ -64,21 +69,19 @@ const IndexPage = () => {
     },
   }
 
+  // algorithm specifications requiring page state
   React.useEffect(() => {
     Object.values(algorithm).forEach(algo => {
-      algo.frame = 120
-      algo.permit = function(processState) {
-        return this.isRunning;
-      }
+      algo.fps = 60;
       algo.update = (processState) => {
-        const { data, index, current, meta } = processState;
+        const { data, selected, scanning, meta } = processState;
         setState(state => ({
           ...state,
           array: data,
-          current,
-          counter: meta.iterations,
+          selected,
+          scanning,
+          counter: meta.counter,
         }));
-        processState.index += 1;
       };
       algo.onComplete = (processState) => {
         setState(state => ({
@@ -94,8 +97,8 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
-        <Array items={state.array} current={state.current} swap={state.swap} />
-        <pre>Iterations: {state.counter}</pre>
+        <Array items={state.array} selected={state.selected} scanning={state.scanning} />
+        <pre>Operations: {state.counter}</pre>
         <Button onClick={handler.reset}>
           {state.running ? 'Stop' : 'Reset'}
         </Button>

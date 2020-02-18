@@ -1,11 +1,11 @@
 class Processor {
 
   static defaultFrame = 1000 / 30; // 30fps default
-  static processLimit = 1000;
+  static processLimit = 8000;
 
   constructor(options = {}) {
     // set fps render interval
-    this._frameDuration = options.frame ? options.frame : options.fps ? 1000 / options.fps : Processor.defaultFrame;
+    this._framerate = options.framerate ? options.framerate : options.fps ? 1000 / options.fps : Processor.defaultFrame;
     // function to confirm continuation of process
     this._permit = options.permit || null;
     // algorithm function to process data
@@ -41,14 +41,14 @@ class Processor {
     if (typeof fps !== "number") {
       throw new Error(`FPS must be a number.`);
     }
-    this._frameDuration = 1000 / fps;
+    this._framerate = 1000 / fps;
   }
 
-  set frame(ms) {
+  set framerate(ms) {
     if (typeof ms !== "number") {
       throw new Error(`Frame duration must be a number in milliseconds.`);
     }
-    this._frameDuration = ms;
+    this._framerate = ms;
   }
 
   // function setters
@@ -125,6 +125,10 @@ class Processor {
     this._shouldReset = true;
   }
 
+  abort() {
+    this._endProcess();
+  }
+
   // initialize processing of algorithm upon given data
 
   run(data){
@@ -149,17 +153,18 @@ class Processor {
         data,
         // immutable state metadata
         meta: {
-          iterations: 0,
+          counter: 0,
           startTime: now,
           lastFrame: now,
           initialState: {...this._initialState},
+          abort: this.abort.bind(this),
         },
       };
       // shouldReset is kept false in case of pause
       this._shouldReset = false;
     }
     // start algorithm process
-    if (!this.permit || !!this._state && this._permit(this._state)){
+    if (!this.permit || (!!this._state && this._permit(this._state))){
       this._isComplete = false;
       this._isRunning = true;
       this._process();
@@ -170,12 +175,12 @@ class Processor {
 
   _process(){
     // check if process should end
-    if (this._condition(this._state) || this._state.meta.iterations >= Processor.processLimit) {
+    if (this._condition(this._state) || this._state.meta.counter >= Processor.processLimit) {
       return this._endProcess();
     }
 
     // request next frame if permitted
-    if (!this._permit || this._permit(this._state)) {
+    if (this._isRunning || !this._permit || this._permit(this._state)) {
       requestAnimationFrame(this._process.bind(this));
     }
 
@@ -184,16 +189,16 @@ class Processor {
     const elapsed = now - this._state.meta.lastFrame;
 
     // draw next frame if enough time has elapsed
-    if (elapsed >= this._frameDuration) {
+    if (elapsed >= this._framerate) {
 
       // Get ready for next frame by updating last frame to now, but also adjust
       // for your fps not being a multiple of RAF's interval (16.7ms)
-      this._state.meta.lastFrame = now - ( elapsed % this._frameDuration );
+      this._state.meta.lastFrame = now - ( elapsed % this._framerate );
 
       // execute process
       this._state.data = this._algorithm(this._state);
       // increment meta iterations for each algorithm run
-      this._state.meta.iterations++;
+      this._state.meta.counter++;
       // custom external updater provided by user for instance
       this._update(this._state);
     }
@@ -202,7 +207,7 @@ class Processor {
   // end algorithm and clean up
 
   _endProcess(){
-    console.log(`Algorithm complete with ${this._state.meta.iterations} iterations`);
+    console.log(`Algorithm complete with ${this._state.meta.counter} events.`);
     this._isRunning = false;
     this._isComplete = true;
     this._shouldReset = true;
