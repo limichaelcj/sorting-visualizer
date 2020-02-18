@@ -110,7 +110,7 @@ const IndexPage = () => {
             onClick={algo.isRunning ? handler.pause(name) : handler.start(name)}
             disabled={state.algorithm === null ? false : algo.isComplete || state.algorithm !== name}
           >
-            {algo.isRunning ? `Pause ${name}` : `Start ${name}`}
+            {`${algo.isRunning ? 'Pause' : 'Start'} ${name}`}
           </Button>
         ))}
 

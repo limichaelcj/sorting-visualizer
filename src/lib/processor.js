@@ -180,7 +180,7 @@ class Processor {
     }
 
     // request next frame if permitted
-    if (this._isRunning || !this._permit || this._permit(this._state)) {
+    if (this._isRunning && (!this._permit || this._permit(this._state))) {
       requestAnimationFrame(this._process.bind(this));
     }
 

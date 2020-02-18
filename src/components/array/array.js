@@ -15,8 +15,6 @@ const Array = ({ items, selected, scanning }) => {
       {items.length > 0 ? items.map((item,i) => (
         <Item
           key={item.id}
-          index={i}
-          id={item.id}
           size={(item.value / max) * 100}
           selected={selected === item.id}
           scanning={scanning === i}
