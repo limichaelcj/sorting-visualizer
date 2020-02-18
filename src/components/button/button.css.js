@@ -12,10 +12,14 @@ export default styled.button`
   &:not(:first-of-type) {
     margin-left: 1rem;
   }
-  &:hover {
+
+  &:disabled {
+    opacity: 0.5;
+  }
+  &:hover:not(:disabled) {
     background-color: rgba(0,0,0,0.1);
   }
-  &:active {
+  &:active:not(:disabled) {
     background-color: black;
     color: white;
   }
