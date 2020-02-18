@@ -1,10 +1,11 @@
 class Processor {
 
-  static fps = 15;
-  static fpsInterval = 1000 / Processor.fps;
+  static defaultFps = 15;
   static processLimit = 1000;
 
   constructor(options = {}) {
+    // set fps render interval
+    this._fpsInterval = 1000 / (options.fps ? options.fps : Processor.defaultFps);
     // the algorithm function to process an array
     this._algorithm = options.algorithm || null;
     // callback function to update view after each algorithm run
@@ -18,6 +19,20 @@ class Processor {
 
   set initialState(state) {
     this._initialState = state;
+  }
+
+  set fps(fps) {
+    if (typeof fps !== "number") {
+      throw new Error(`FPS must be a number.`);
+    }
+    this._fpsInterval = 1000 / fps;
+  }
+
+  set frame(ms) {
+    if (typeof ms !== "number") {
+      throw new Error(`Frame duration must be a number in milliseconds.`);
+    }
+    this._fpsInterval = ms;
   }
 
   set algorithm(func){
@@ -82,11 +97,11 @@ class Processor {
     const elapsed = now - this._state.meta.lastFrame;
 
     // draw next frame if enough time has elapsed
-    if (elapsed >= Processor.fpsInterval) {
+    if (elapsed >= this._fpsInterval) {
 
       // Get ready for next frame by updating last frame to now, but also adjust
       // for your fps not being a multiple of RAF's interval (16.7ms)
-      this._state.meta.lastFrame = now - ( elapsed % Processor.fpsInterval );
+      this._state.meta.lastFrame = now - ( elapsed % this._fpsInterval );
 
       // update
       this._state.data = this._algorithm(this._state);

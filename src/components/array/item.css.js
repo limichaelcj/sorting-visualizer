@@ -5,6 +5,7 @@ export default styled.div`
   ${props => `
     height: ${props.size}%;
     background-color: ${props.current ? 'red' : 'black'};
+    z-index: ${props.current ? '1' : '0'};
   `}
 
   &:not(:first-child) {

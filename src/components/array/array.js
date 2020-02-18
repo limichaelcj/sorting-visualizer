@@ -8,13 +8,15 @@ import Center from '../ui/center'
 
 const Array = ({ items, current }) => {
 
-  const max = Math.max(...items.map(item => item.value))
+  const max = Math.max(...items.map(item => item.value));
 
   return (
     <StyledArray>
       {items.length > 0 ? items.map((item,i) => (
         <Item
           key={item.id}
+          index={i}
+          id={item.id}
           size={(item.value / max) * 100}
           current={current === item.id}
         />

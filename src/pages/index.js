@@ -31,6 +31,7 @@ const IndexPage = () => {
   const [state, setState] = React.useState(initialState());
 
   React.useEffect(() => {
+    insertionSort.frame = 120;
     insertionSort.update = (stt) => {
       const { data, index, current, meta} = stt;
       setState(state => ({
