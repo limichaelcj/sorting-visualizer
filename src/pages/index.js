@@ -62,17 +62,15 @@ const IndexPage = () => {
     })
   }
 
-  const handleStart = () => {
+  const handleStartInsertion = () => {
     insertionSort.run(state.array);
     setState(state => ({...state, running: true}));
   }
 
-  const handlePause = () => {
+  const handlePauseInsertion = () => {
     insertionSort.pause();
     setState(state => ({...state, running: false }));
   }
-
-  const handleProcessControl = insertionSort.isRunning ? handlePause : handleStart;
 
   return (
     <Layout>
@@ -82,7 +80,7 @@ const IndexPage = () => {
         <Array items={state.array} current={state.current} swap={state.swap} />
         <pre>Iterations: {state.counter}</pre>
         <Button onClick={handleReset}>Reset</Button>
-        <Button onClick={insertionSort.isRunning ? handlePause : handleStart} disabled={insertionSort.isComplete}>
+        <Button onClick={insertionSort.isRunning ? handlePauseInsertion : handleStartInsertion} disabled={insertionSort.isComplete}>
           {insertionSort.isRunning ? 'Pause' : 'Start'}
         </Button>
       </Container>
