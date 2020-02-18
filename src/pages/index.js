@@ -63,11 +63,11 @@ const IndexPage = () => {
   }
 
   React.useEffect(() => {
-    insertionSort.frame = 120;
-    insertionSort.permit = function(processState) {
+    algorithm.insertionSort.frame = 120;
+    algorithm.insertionSort.permit = function(processState) {
       return this.isRunning;
     }
-    insertionSort.update = (processState) => {
+    algorithm.insertionSort.update = (processState) => {
       const { data, index, current, meta} = processState;
       setState(state => ({
         ...state,
@@ -77,7 +77,7 @@ const IndexPage = () => {
       }));
       processState.index += 1;
     };
-    insertionSort.onComplete = (processState) => {
+    algorithm.insertionSort.onComplete = (processState) => {
       setState(state => ({
         ...state,
         running: false,
@@ -103,7 +103,7 @@ const IndexPage = () => {
             {algo.isRunning ? `Pause ${name}` : `Start ${name}`}
           </Button>
         ))}
-        
+
       </Container>
     </Layout>
   )
