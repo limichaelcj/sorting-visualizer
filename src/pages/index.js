@@ -13,7 +13,7 @@ import selectionSort from '../lib/algorithms/selectionSort'
 
 // initial state used for React page state
 const initialState = () => ({
-  array: generateArray(100),
+  array: generateArray(80),
   counter: 0,
   running: false,
   // name of algorithm for mapping purposes
@@ -39,7 +39,7 @@ const IndexPage = () => {
 
   const algorithm = {
     insertionSort,
-    // selectionSort,
+    selectionSort,
   }
 
   // algorithm control handlers

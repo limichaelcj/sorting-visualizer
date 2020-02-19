@@ -16,7 +16,7 @@ const Array = ({ items, selected, scanning }) => {
         <Item
           key={item.id}
           size={(item.value / max) * 100}
-          selected={selected === item.id}
+          selected={selected === i}
           scanning={scanning === i}
         />
       )) : (

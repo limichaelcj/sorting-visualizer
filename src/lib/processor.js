@@ -207,7 +207,7 @@ class Processor {
   // end algorithm and clean up
 
   _endProcess(){
-    console.log(`Algorithm complete with ${this._state.meta.counter} events.`);
+    console.log(`Algorithm complete with ${this._state.meta.counter} operations.`);
     this._isRunning = false;
     this._isComplete = true;
     this._shouldReset = true;

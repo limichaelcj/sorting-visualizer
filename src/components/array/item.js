@@ -11,7 +11,7 @@ const ArrayItem = ({ size, selected, scanning }) => {
       scanning={scanning}
       style={{
         height: size + '%',
-        backgroundColor: selected ? 'red' : scanning ? 'blue' : 'black',
+        backgroundColor: scanning ? 'blue' : selected ? 'red' : 'black',
         zIndex: selected ? 1 : 0,
       }}
     />
