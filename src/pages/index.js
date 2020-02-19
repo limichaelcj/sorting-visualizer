@@ -76,18 +76,21 @@ const IndexPage = () => {
       algo.update = (processState) => {
         const { data, selected, scanning, meta } = processState;
         setState(state => ({
-          ...state,
-          array: data,
-          selected,
-          scanning,
-          counter: meta.counter,
+            ...state,
+            array: data,
+            selected,
+            scanning,
+            counter: meta.counter,
         }));
       };
       algo.onComplete = (processState) => {
-        setState(state => ({
-          ...state,
-          running: false,
-        }))
+        setState(state => {
+          console.log(`${state.algorithm} complete with ${processState.meta.counter} operations.`);
+          return {
+            ...state,
+            running: false,
+          }
+        })
       }
     });
   }, []);

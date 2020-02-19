@@ -89,6 +89,9 @@ insertionSort.algorithm = (state) => {
     const node = newData.splice(state.selected, 1)[0];
     // insert node before scanning index
     newData.splice(state.scanning + 1, 0, node);
+    // account for additional memory operations for insert action
+    // (splice, move all values up one index for inserting)
+    state.meta.counter += state.selected - state.scanning;
     // continue to next index
     state.action = 'select';
     return newData;
