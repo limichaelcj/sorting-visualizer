@@ -6,9 +6,14 @@ import Center from '../ui/center'
 
 // items: array of objects = { id: int, value: int }
 
-const Array = ({ items, selected, scanning }) => {
+const Array = ({ items, selected, scanning, flag }) => {
 
-  const max = Math.max(...items.map(item => item.value));
+  // store max value
+  const [max, setMax] = React.useState(0);
+  // only rerender on data change
+  React.useEffect(() => {
+    setMax(Math.max(...items.map(item => item.value)));
+  }, [items])
 
   return (
     <StyledArray>
@@ -18,6 +23,7 @@ const Array = ({ items, selected, scanning }) => {
           size={(item.value / max) * 100}
           selected={selected === i}
           scanning={scanning === i}
+          flagged={flag === i}
         />
       )) : (
         <Center>✘</Center>
@@ -30,6 +36,7 @@ Array.propTypes = {
   items: PropTypes.array,
   current: PropTypes.number,
   scanning: PropTypes.number,
+  flag: PropTypes.number,
 }
 
 Array.defaultProps = {

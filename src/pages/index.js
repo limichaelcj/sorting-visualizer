@@ -10,6 +10,7 @@ import { generateArray } from '../lib/array'
 
 import insertionSort from '../lib/algorithms/insertionSort'
 import selectionSort from '../lib/algorithms/selectionSort'
+import bubbleSort from '../lib/algorithms/bubbleSort'
 
 // initial state used for React page state
 const initialState = () => ({
@@ -21,6 +22,7 @@ const initialState = () => ({
   // index positions of algorithm
   selected: null,
   scanning: null,
+  flag: null,
 })
 
 const IndexPage = () => {
@@ -40,6 +42,7 @@ const IndexPage = () => {
   const algorithm = {
     insertionSort,
     selectionSort,
+    bubbleSort,
   }
 
   // algorithm control handlers
@@ -74,13 +77,14 @@ const IndexPage = () => {
     Object.values(algorithm).forEach(algo => {
       algo.fps = 60;
       algo.update = (processState) => {
-        const { data, selected, scanning, meta } = processState;
+        const { data, selected, scanning, flag, meta } = processState;
         setState(state => ({
-            ...state,
-            array: data,
-            selected,
-            scanning,
-            counter: meta.counter,
+          ...state,
+          array: data,
+          selected,
+          scanning,
+          flag,
+          counter: meta.counter,
         }));
       };
       algo.onComplete = (processState) => {
@@ -88,6 +92,9 @@ const IndexPage = () => {
           console.log(`${state.algorithm} complete with ${processState.meta.counter} operations.`);
           return {
             ...state,
+            selected: null,
+            scanning: null,
+            flag: null,
             running: false,
           }
         })
@@ -100,7 +107,12 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
-        <Array items={state.array} selected={state.selected} scanning={state.scanning} />
+        <Array
+          items={state.array}
+          selected={state.selected}
+          scanning={state.scanning}
+          flag={state.flag}
+        />
         <pre>Operations: {state.counter}</pre>
         <Button onClick={handler.reset}>
           {state.running ? 'Stop' : 'Reset'}
