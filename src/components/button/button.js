@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledButton from './button.css'
 
-const Button = ({ children, onClick, active, disabled }) => {
+const Button = ({ children, onClick, active, disabled, icon }) => {
   return (
     <StyledButton onClick={onClick} active={active} disabled={disabled || active}>
       {children}
@@ -13,6 +13,9 @@ const Button = ({ children, onClick, active, disabled }) => {
 Button.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
+  active: PropTypes.bool,
+  disabled: PropTypes.bool,
+  icon: PropTypes.bool,
 }
 
 export default Button

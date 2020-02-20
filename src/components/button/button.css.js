@@ -5,6 +5,14 @@ const activeColor = theme.primary;
 
 export default styled.button`
   padding: 0.6rem 1.2rem;
+  ${props => props.icon && `
+    height: ${props.size || 2}rem;
+    width: ${props.size || 2}rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  `}
   font-size: 1.2rem;
   font-family: monospace;
   background-color: transparent;
