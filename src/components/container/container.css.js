@@ -1,6 +1,12 @@
 import styled from 'styled-components'
+import breakpoints from '../breakpoints'
 
 export default styled.div`
   margin: auto;
-  max-width: 800px;
+  ${props => `
+    @media only screen and (min-width: ${breakpoints[props.size] || breakpoints.sm}px){
+      width: ${breakpoints[props.size] || breakpoints.sm}px;
+      max-width: 100%;
+    }
+  `}
 `;

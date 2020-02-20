@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from '../components/container/container'
+import Column from '../components/columns/columns'
 import Title from '../components/title/title'
 import Array from '../components/array/array'
 import Control from '../components/control/control'
@@ -120,32 +121,39 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Container>
-        <Title>{data.site.siteMetadata.title}</Title>
-        <pre>Operations: {state.counter}</pre>
-        <Array
-          items={state.array}
-          selected={state.selected}
-          scanning={state.scanning}
-          flag={state.flag}
-        />
+      <Title>{data.site.siteMetadata.title}</Title>
 
-        <Control
-          algorithms={Object.keys(algorithm)}
-          currentView={state.info}
-          handleReset={handler.reset(state.runningAlgorithm)}
-          handleViewInfo={handler.viewInfo}
-        />
-
-        <Information
-          algorithm={state.info}
-          running={state.running}
-          runningThis={state.running && state.runningAlgorithm === state.info}
-          handlePlay={handler.play(state.info)}
-          handlePause={handler.pause(state.info)}
-        />
-
+      <Container size="lg">
+        <Column.container break="md">
+          <Column.item size={9}>
+            <Container size="md">
+              <Array
+                items={state.array}
+                selected={state.selected}
+                scanning={state.scanning}
+                flag={state.flag}
+              />
+              <Control
+                algorithms={Object.keys(algorithm)}
+                currentView={state.info}
+                handleReset={handler.reset(state.runningAlgorithm)}
+                handleViewInfo={handler.viewInfo}
+              />
+              <Information
+                algorithm={state.info}
+                running={state.running}
+                runningThis={state.running && state.runningAlgorithm === state.info}
+                handlePlay={handler.play(state.info)}
+                handlePause={handler.pause(state.info)}
+              />
+            </Container>
+          </Column.item>
+          <Column.item size="3">
+            <pre>Operations: {state.counter}</pre>
+          </Column.item>
+        </Column.container>
       </Container>
+
     </Layout>
   )
 }
