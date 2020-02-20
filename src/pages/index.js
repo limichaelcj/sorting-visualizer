@@ -129,7 +129,7 @@ const IndexPage = () => {
 
         <Control
           algorithms={Object.keys(algorithm)}
-          running={state.running}
+          currentView={state.info}
           handleReset={handler.reset(state.runningAlgorithm)}
           handleViewInfo={handler.viewInfo}
         />

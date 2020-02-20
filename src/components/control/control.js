@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import Row from '../ui/row'
 import Button from '../button/button'
 
-const Control = ({ algorithms, handleReset, handleViewInfo }) => {
+const Control = ({ algorithms, currentView, handleReset, handleViewInfo }) => {
+
   return (
-    <Row gap='0.5rem' style={{paddingBottom: 0}}>
+    <Row style={{marginTop: '1rem'}}>
       <Button onClick={handleReset}>Reset</Button>
       {algorithms.map(name => (
-        <Button onClick={handleViewInfo(name)} key={name}>
+        <Button
+          key={name}
+          onClick={handleViewInfo(name)}
+          active={currentView === name}
+        >
           {name}
         </Button>
       ))}
@@ -18,6 +23,7 @@ const Control = ({ algorithms, handleReset, handleViewInfo }) => {
 
 Control.propTypes = {
   algorithms: PropTypes.array,
+  currentView: PropTypes.string,
   handleReset: PropTypes.func,
   handleViewInfo: PropTypes.func,
 }

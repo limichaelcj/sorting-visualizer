@@ -1,25 +1,27 @@
 import styled from 'styled-components'
+import theme from '../theme'
+
+const activeColor = theme.primary;
 
 export default styled.button`
   padding: 0.6rem 1.2rem;
   font-size: 1.2rem;
-  color: inherit;
-  background: transparent;
+  font-family: monospace;
+  background-color: transparent;
+  color: ${theme.text};
   cursor: pointer;
+  border-radius: 0;
   border: none;
-  ${props => props.outline && `
-    border: 2px solid black;
-    border-radius: 4px;
-  `}
+  border-bottom: 2px solid ${props => props.active ? activeColor : 'transparent'};
 
   &:disabled {
-    opacity: 0.5;
+    color: ${props => props.active ? activeColor : theme.textOff};
+    cursor: auto;
   }
   &:hover:not(:disabled) {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.05);
   }
-  &:active:not(:disabled) {
-    background-color: black;
-    color: white;
+  &, &:visited {
+    outline: none;
   }
 `;

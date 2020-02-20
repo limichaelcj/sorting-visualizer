@@ -5,10 +5,10 @@ import Row from '../ui/row'
 import Button from '../button/button'
 
 const Information = ({ algorithm, running, runningThis, handlePlay, handlePause }) => {
-  
+
   return (
     <StyledInformation>
-      <Row gap='1rem'>
+      <Row gap='1rem' style={{padding: '1rem 0'}}>
         <Button onClick={runningThis ? handlePause : handlePlay} disabled={running && !runningThis}>
           {runningThis ? 'Pause' : 'Play'}
         </Button>

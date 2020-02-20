@@ -3,6 +3,6 @@ import theme from '../theme'
 
 export default styled.div`
   display: block;
-  background-color: ${theme.primary};
-  color: ${theme.textInvert};
+  background-color: ${theme.backgroundOff};
+  color: ${theme.text};
 `;
