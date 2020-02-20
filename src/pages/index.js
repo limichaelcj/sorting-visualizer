@@ -56,7 +56,9 @@ const IndexPage = () => {
         algorithm[name].reset();
       }
       // reset page state
-      setState(initialState());
+      setTimeout(() => {
+        setState(initialState());
+      }, 20);
     },
     play: (name) => () => {
       algorithm[name].run(state.array);
