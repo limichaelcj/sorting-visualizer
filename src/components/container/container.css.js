@@ -3,10 +3,14 @@ import breakpoints from '../breakpoints'
 
 export default styled.div`
   margin: auto;
+  padding: 0 0.5rem;
+  width: auto;
+  max-width: 100%;
   ${props => `
-    @media only screen and (min-width: ${breakpoints[props.size] || breakpoints.sm}px){
-      width: ${breakpoints[props.size] || breakpoints.sm}px;
-      max-width: 100%;
+    @media only screen and (min-width: ${breakpoints[props.size]}px){
+      width: 100%;
+      max-width: ${breakpoints[props.size]}px;
+      padding: 0;
     }
   `}
 `;

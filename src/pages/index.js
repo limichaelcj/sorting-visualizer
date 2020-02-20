@@ -148,7 +148,7 @@ const IndexPage = () => {
               />
             </Container>
           </Column.item>
-          <Column.item size="3">
+          <Column.item size={3}>
             <pre>Operations: {state.counter}</pre>
           </Column.item>
         </Column.container>

@@ -2,36 +2,24 @@ import styled from 'styled-components'
 import theme from '../theme'
 
 const activeColor = theme.primary;
+const activeFade = theme.primaryFade;
 
 export default styled.button`
   padding: 0.6rem 1.2rem;
-  ${props => props.icon && `
-    height: ${props.size || 2}rem;
-    width: ${props.size || 2}rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-  `}
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: monospace;
-  background-color: transparent;
-  color: ${theme.text};
   cursor: pointer;
-  border-radius: 0;
   border: none;
-  border-bottom: 2px solid ${props => props.active ? activeColor : 'transparent'};
+  background-color: ${props => props.active ? activeFade : 'transparent'};
+  color: ${props => props.active ? activeColor : 'inherit'};
 
   &:disabled {
     color: ${props => props.active ? activeColor : theme.textOff};
     cursor: auto;
+    pointer-events: none;
   }
   &:hover:not(:disabled) {
-    background-color: rgba(0,0,0,0.05);
-  }
-  &:active {
-    background-color: ${theme.primary} !important;
-    color: ${theme.textInvert} !important;
+    background-color: rgba(0,0,0,0.04);
   }
   &, &:visited {
     outline: none;

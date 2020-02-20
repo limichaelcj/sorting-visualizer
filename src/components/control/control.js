@@ -1,26 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Row from '../ui/row'
-import Button from '../button/button'
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import Tab from '../button/tab'
+import IconButton from '../button/icon'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import ScrollMenu from '../menu/scroll'
+
+console.log(faSyncAlt)
 
 const Control = ({ algorithms, currentView, handleReset, handleViewInfo }) => {
 
   return (
     <Row style={{marginTop: '1rem'}}>
-      <Button onClick={handleReset}>
-        <Icon icon={faSyncAlt} />
-      </Button>
-      {algorithms.map(name => (
-        <Button
-          key={name}
-          onClick={handleViewInfo(name)}
-          active={currentView === name}
-        >
-          {name}
-        </Button>
-      ))}
+      <IconButton icon={faSyncAlt} onClick={handleReset} />
+      <ScrollMenu direction="x" snap="start" fade style={{marginLeft: '1rem', flex: '1 1 auto'}}>
+        {algorithms.map(name => (
+          <Tab
+            key={name}
+            onClick={handleViewInfo(name)}
+            active={currentView === name}
+          >
+            {name}
+          </Tab>
+        ))}
+      </ScrollMenu>
     </Row>
   )
 }
