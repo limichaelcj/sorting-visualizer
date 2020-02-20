@@ -21,6 +21,10 @@ export default styled.button`
   &:hover:not(:disabled) {
     background-color: rgba(0,0,0,0.05);
   }
+  &:active {
+    background-color: ${theme.primary} !important;
+    color: ${theme.textInvert} !important;
+  }
   &, &:visited {
     outline: none;
   }
