@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import theme from '../theme'
 
 export default styled.div`
-  background-color: #eee;
   display: block;
+  background-color: ${theme.primary};
+  color: ${theme.textInvert};
 `;

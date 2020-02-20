@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledItem from './item.css'
+import theme from '../theme'
 
 const ArrayItem = ({ size, selected, scanning, flagged }) => {
 
@@ -11,7 +12,11 @@ const ArrayItem = ({ size, selected, scanning, flagged }) => {
       scanning={scanning}
       style={{
         height: size + '%',
-        backgroundColor: flagged ? 'green' : scanning ? 'blue' : selected ? 'red' : 'black',
+        backgroundColor:
+          flagged ? theme.array.flagged
+          : scanning ? theme.array.scanning
+          : selected ? theme.array.selected
+          : theme.array.default,
         zIndex: selected ? 1 : 0,
       }}
     />
