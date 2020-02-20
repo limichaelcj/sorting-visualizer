@@ -19,6 +19,7 @@ export default styled.button`
   transition: 100ms;
 
   &:disabled {
+    cursor: auto;
     &, * {
       color: ${theme.disabled};
     }
