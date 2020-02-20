@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledContainer from './container.css'
 
-const Container = ({ children, size, breakpoint }) => (
-  <StyledContainer size={size} breakpoint={breakpoint}>
+const Container = ({ children, size, breakpoint, style }) => (
+  <StyledContainer size={size} breakpoint={breakpoint} style={style}>
     {children}
   </StyledContainer>
 );
@@ -11,6 +11,7 @@ const Container = ({ children, size, breakpoint }) => (
 Container.propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  style: PropTypes.object,
 }
 
 Container.defaultProps = {

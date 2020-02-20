@@ -123,7 +123,7 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Title>{data.site.siteMetadata.title}</Title>
 
-      <Container size="lg">
+      <Container size="lg" style={{padding: '0 1rem'}}>
         <Column.container break="md">
           <Column.item size={9}>
             <Container size="md">

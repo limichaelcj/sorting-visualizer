@@ -20,7 +20,7 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
           <h2 style={{margin: 0}}>{capitalize(algorithm).replace(/_/ig, ' ')}</h2>
         </div>
       </Row>
-      <p style={{padding: '0 1rem 1rem'}}>
+      <p style={{padding: '1rem 1rem 1rem 3.2rem'}}>
         Algorithm description...
       </p>
     </StyledInformation>
