@@ -5,7 +5,8 @@ import SEO from "../components/seo"
 import Container from '../components/container/container'
 import Title from '../components/title/title'
 import Array from '../components/array/array'
-import Button from '../components/button/button'
+import Control from '../components/control/control'
+import Information from '../components/information/information'
 import { generateArray } from '../lib/array'
 
 import insertionSort from '../lib/algorithms/insertionSort'
@@ -17,8 +18,10 @@ const initialState = () => ({
   array: generateArray(80),
   counter: 0,
   running: false,
-  // name of algorithm for mapping purposes
-  algorithm: null,
+  // name of running algorithm for handler mapping
+  runningAlgorithm: null,
+  // name of algorithm in information view
+  info: 'insertionSort',
   // index positions of algorithm
   selected: null,
   scanning: null,
@@ -47,15 +50,15 @@ const IndexPage = () => {
 
   // algorithm control handlers
   const handler = {
-    reset: () => {
+    reset: (name) => () => {
       // reset algorithm
-      if (state.algorithm) {
-        algorithm[state.algorithm].reset();
+      if (name) {
+        algorithm[name].reset();
       }
       // reset page state
       setState(initialState());
     },
-    start: (name) => () => {
+    play: (name) => () => {
       algorithm[name].run(state.array);
       setState(state => ({
         ...state,
@@ -70,6 +73,13 @@ const IndexPage = () => {
         running: false,
       }))
     },
+    // currently viewing algorithm in info section
+    viewInfo: (name) => () => {
+      setState(state => ({
+        ...state,
+        info: name,
+      }))
+    }
   }
 
   // algorithm specifications requiring page state
@@ -89,7 +99,7 @@ const IndexPage = () => {
       };
       algo.onComplete = (processState) => {
         setState(state => {
-          console.log(`${state.algorithm} complete with ${processState.meta.counter} operations.`);
+          console.log(`${state.runningAlgorithm} complete with ${processState.meta.counter} operations.`);
           return {
             ...state,
             selected: null,
@@ -107,27 +117,28 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Container>
         <Title>{data.site.siteMetadata.title}</Title>
+        <pre>Operations: {state.counter}</pre>
         <Array
           items={state.array}
           selected={state.selected}
           scanning={state.scanning}
           flag={state.flag}
         />
-        <pre>Operations: {state.counter}</pre>
-        <Button onClick={handler.reset}>
-          {state.running ? 'Stop' : 'Reset'}
-        </Button>
 
-        {/* Button for each algorithm */}
-        {Object.entries(algorithm).map(([name, algo], index) => (
-          <Button
-            key={index}
-            onClick={algo.isRunning ? handler.pause(name) : handler.start(name)}
-            disabled={state.algorithm === null ? false : algo.isComplete || state.algorithm !== name}
-          >
-            {`${algo.isRunning ? 'Pause' : 'Start'} ${name}`}
-          </Button>
-        ))}
+        <Control
+          algorithms={Object.keys(algorithm)}
+          running={state.running}
+          handleReset={handler.reset(state.runningAlgorithm)}
+          handleViewInfo={handler.viewInfo}
+        />
+
+        <Information
+          algorithm={state.info}
+          running={state.running}
+          runningThis={state.running && state.runningAlgorithm === state.info}
+          handlePlay={handler.play(state.info)}
+          handlePause={handler.pause(state.info)}
+        />
 
       </Container>
     </Layout>
