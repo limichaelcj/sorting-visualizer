@@ -57,7 +57,10 @@ const IndexPage = () => {
       }
       // reset page state
       setTimeout(() => {
-        setState(initialState());
+        setState(state => ({
+          ...initialState(),
+          info: state.info,
+        }));
       }, 20);
     },
     play: (name) => () => {
