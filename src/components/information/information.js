@@ -4,6 +4,7 @@ import StyledInformation from './information.css'
 import Row from '../ui/row'
 import IconButton from '../button/icon'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
+import { capitalize } from '../../lib/string'
 
 const Information = ({ algorithm, running, runningThis, handlePlay, handlePause }) => {
 
@@ -16,7 +17,7 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
           disabled={running && !runningThis}
         />
         <div>
-          <h2 style={{margin: 0}}>{algorithm}</h2>
+          <h2 style={{margin: 0}}>{capitalize(algorithm).replace(/_/ig, ' ')}</h2>
         </div>
       </Row>
       <p style={{padding: '0 1rem 1rem'}}>

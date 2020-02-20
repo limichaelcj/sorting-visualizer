@@ -5,22 +5,21 @@ import Tab from '../button/tab'
 import IconButton from '../button/icon'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import ScrollMenu from '../menu/scroll'
-
-console.log(faSyncAlt)
+import { capitalize } from '../../lib/string'
 
 const Control = ({ algorithms, currentView, handleReset, handleViewInfo }) => {
 
   return (
     <Row style={{marginTop: '1rem'}}>
       <IconButton icon={faSyncAlt} onClick={handleReset} />
-      <ScrollMenu direction="x" snap="start" fade style={{marginLeft: '1rem', flex: '1 1 auto'}}>
+      <ScrollMenu direction="x" snap="start" fade style={{flex: '1 1 auto'}}>
         {algorithms.map(name => (
           <Tab
             key={name}
             onClick={handleViewInfo(name)}
             active={currentView === name}
           >
-            {name}
+            {capitalize(name).replace(/_.*/ig, '')}
           </Tab>
         ))}
       </ScrollMenu>

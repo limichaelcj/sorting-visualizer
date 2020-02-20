@@ -10,9 +10,15 @@ import Control from '../components/control/control'
 import Information from '../components/information/information'
 import { generateArray } from '../lib/array'
 
-import insertionSort from '../lib/algorithms/insertionSort'
-import selectionSort from '../lib/algorithms/selectionSort'
-import bubbleSort from '../lib/algorithms/bubbleSort'
+import insertion_sort from '../lib/algorithms/insertionSort'
+import selection_sort from '../lib/algorithms/selectionSort'
+import bubble_sort from '../lib/algorithms/bubbleSort'
+
+const algorithm = {
+  insertion_sort,
+  selection_sort,
+  bubble_sort,
+}
 
 // initial state used for React page state
 const initialState = () => ({
@@ -22,7 +28,7 @@ const initialState = () => ({
   // name of running algorithm for handler mapping
   runningAlgorithm: null,
   // name of algorithm in information view
-  info: 'insertionSort',
+  info: 'insertion_sort',
   // index positions of algorithm
   selected: null,
   scanning: null,
@@ -42,12 +48,6 @@ const IndexPage = () => {
   `);
 
   const [state, setState] = React.useState(initialState());
-
-  const algorithm = {
-    insertionSort,
-    selectionSort,
-    bubbleSort,
-  }
 
   // algorithm control handlers
   const handler = {
