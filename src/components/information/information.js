@@ -6,6 +6,8 @@ import Button from '../button/button'
 
 const Information = ({ algorithm, running, runningThis, handlePlay, handlePause }) => {
 
+  console.log(running, runningThis, algorithm)
+
   return (
     <StyledInformation>
       <Row gap='1rem'>

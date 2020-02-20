@@ -62,7 +62,7 @@ const IndexPage = () => {
       algorithm[name].run(state.array);
       setState(state => ({
         ...state,
-        algorithm: name,
+        runningAlgorithm: name,
         running: true,
       }));
     },
