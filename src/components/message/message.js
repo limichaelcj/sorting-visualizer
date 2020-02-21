@@ -5,4 +5,5 @@ export default styled.div`
   padding: 1rem;
   font-size: 1rem;
   font-family: ${props => theme.font[props.font] || theme.font.main};
+  background-color: ${props => props.color || theme.backgroundOff};
 `;

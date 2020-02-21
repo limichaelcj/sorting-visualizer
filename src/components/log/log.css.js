@@ -15,13 +15,10 @@ export default styled.ul`
     padding: 0.5rem 0.8rem;
     background-color: ${theme.backgroundOff};
     &:not(:first-child) {
-      border-bottom: 1px solid ${theme.primaryAlpha};
+      border-bottom: 1px solid ${theme.secondaryAlpha};
     }
     span {
       display: inline-block;
-      &:first-child {
-        color: ${theme.primary};
-      }
       &:nth-child(2) {
         padding: 0 0.8rem;
       }

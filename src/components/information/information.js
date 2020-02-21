@@ -6,14 +6,14 @@ import IconButton from '../button/icon'
 import Link from '../link/link'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
-const Information = ({ algorithm, inProgress, runningThis, handlePlay, handlePause }) => {
+const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, handlePause }) => {
 
   return (
     <StyledInformation>
       <Row gap='1rem' style={{padding: '.5rem', borderBottom: '1px dotted black'}}>
         <IconButton
-          onClick={runningThis ? handlePause : handlePlay}
-          icon={runningThis ? faPause : faPlay}
+          onClick={running && runningThis ? handlePause : handlePlay}
+          icon={running && runningThis ? faPause : faPlay}
           disabled={inProgress && !runningThis}
         />
         <div>

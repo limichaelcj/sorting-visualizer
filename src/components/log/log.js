@@ -12,9 +12,9 @@ const Log = ({ logs }) => {
         <StyledLog>
           {logs.map((log, i) => (
             <li key={i}>
-              <span>{i+1}.</span>
-              <span>{log.algorithm}:</span>
-              <span>{log.count}</span>
+              <span><strong>{i+1}.</strong></span>
+              <span>{log.algorithm}</span>
+              <span><strong>{log.count}</strong></span>
             </li>
           ))}
         </StyledLog>

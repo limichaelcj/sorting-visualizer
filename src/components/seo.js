@@ -68,7 +68,9 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <link href="https://fonts.googleapis.com/css?family=Exo+2|Inconsolata&display=swap" rel="stylesheet" />
+    </Helmet>
   )
 }
 

@@ -170,6 +170,7 @@ const IndexPage = () => {
                 {arraySizes.map(v => (
                   <Button
                     key={v}
+                    alt
                     onClick={handler.setArraySize(v)}
                     active={state.arraySize === v}
                     style={{padding: '0.3em', fontSize: '0.8rem'}}
@@ -178,6 +179,7 @@ const IndexPage = () => {
                   </Button>
                 ))}
               </Row>
+
               <Control
                 algorithms={algorithm}
                 currentView={state.info}
@@ -186,8 +188,9 @@ const IndexPage = () => {
               />
               <Information
                 algorithm={algorithm[state.info]}
+                running={state.running}
+                runningThis={state.runningAlgorithm === state.info}
                 inProgress={state.inProgress}
-                runningThis={state.running && state.runningAlgorithm === state.info}
                 handlePlay={handler.play(state.info)}
                 handlePause={handler.pause(state.info)}
               />
