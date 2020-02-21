@@ -3,6 +3,7 @@ import chroma from 'chroma-js'
 const getAlpha = c => chroma(c).alpha(.25);
 const getFade = c => chroma(c).brighten(2.5).desaturate(.2);
 
+const white = '#fff';
 const primary = '#4D9DE0';
 const primaryAlpha = getAlpha(primary);
 const primaryFade = getFade(primary);
@@ -10,7 +11,6 @@ const secondary = '#2AA464';
 const secondaryAlpha = getAlpha(secondary);
 const secondaryFade = getFade(secondary);
 const text = '#222';
-const white = '#fff';
 
 export default ({
   primary: primary,
@@ -34,6 +34,6 @@ export default ({
     selected: chroma('#EB6456').alpha(.8),
     scanning: chroma(primary).alpha(.8),
     flagged: chroma(secondary).brighten().desaturate(),
-    default: '#CCDBDC',
+    default: chroma('#CCDBDC').alpha(.8),
   }
 })
