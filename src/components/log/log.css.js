@@ -12,7 +12,7 @@ export default styled.ul`
   li {
     margin: 0;
     display: block;
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 1rem;
     background-color: ${theme.backgroundOff};
     &:not(:first-child) {
       border-bottom: 1px solid ${theme.secondaryAlpha};

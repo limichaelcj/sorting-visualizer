@@ -11,6 +11,7 @@ const Container = ({ children, size, breakpoint, style }) => (
 Container.propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  breakpoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   style: PropTypes.object,
 }
 

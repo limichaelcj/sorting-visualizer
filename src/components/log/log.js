@@ -13,7 +13,7 @@ const Log = ({ logs }) => {
           {logs.map((log, i) => (
             <li key={i}>
               <span><strong>{i+1}.</strong></span>
-              <span>{log.algorithm}</span>
+              <span>{log.algorithm}(<strong>{log.sample}</strong>)</span>
               <span><strong>{log.count}</strong></span>
             </li>
           ))}

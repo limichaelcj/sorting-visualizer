@@ -7,11 +7,11 @@ export default styled.button`
   font-family: monospace;
   cursor: pointer;
   border: none;
-  background-color: ${props => props.active ? (props.alt ? theme.secondaryFade : theme.primaryFade) : 'transparent'};
-  color: ${props => props.active ? (props.alt ? theme.secondary : theme.primary) : 'inherit'};
+  background-color: ${props => props.active ? (props.secondary ? theme.secondaryFade : theme.primaryFade) : 'transparent'};
+  color: ${props => props.active ? (props.secondary ? theme.secondary : theme.primary) : 'inherit'};
 
   &:disabled {
-    color: ${props => props.active ? (props.alt ? theme.secondary : theme.primary) : theme.textOff};
+    color: ${props => props.active ? (props.secondary ? theme.secondary : theme.primary) : theme.textOff};
     cursor: auto;
     pointer-events: none;
   }

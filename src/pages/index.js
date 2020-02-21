@@ -13,6 +13,7 @@ import Information from '../components/information/information'
 import Log from '../components/log/log'
 import Footer from '../components/footer/footer'
 import { generateArray } from '../lib/array'
+import theme from '../components/theme'
 
 import insertionSort from '../lib/algorithms/insertionSort'
 import selectionSort from '../lib/algorithms/selectionSort'
@@ -141,6 +142,7 @@ const IndexPage = () => {
               {
                 algorithm: algorithm[state.runningAlgorithm].shortName,
                 count: state.counter,
+                sample: state.arraySize,
               },
             ]
           }
@@ -154,10 +156,9 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Title>{data.site.siteMetadata.title}</Title>
 
-      <Container size="lg" style={{padding: '0 1rem'}}>
-        <Column.container break="md" gap="1">
-          <Column.item size={9}>
-            <Container size="md">
+      <Container size="xl" style={{marginLeft: 0, maxWidth: 1480}}>
+        <Column.container break="md" reverse>
+          <Column.item size={9} style={{padding: '0 1rem'}}>
               <Simulator
                 items={state.array}
                 selected={state.selected}
@@ -170,7 +171,7 @@ const IndexPage = () => {
                 {arraySizes.map(v => (
                   <Button
                     key={v}
-                    alt
+                    secondary
                     onClick={handler.setArraySize(v)}
                     active={state.arraySize === v}
                     style={{padding: '0.3em', fontSize: '0.8rem'}}
@@ -194,9 +195,11 @@ const IndexPage = () => {
                 handlePlay={handler.play(state.info)}
                 handlePause={handler.pause(state.info)}
               />
-            </Container>
           </Column.item>
-          <Column.item size={3}>
+          <Column.item size={3} style={{
+            backgroundColor: theme.backgroundSoft,
+            borderRight: `1px solid ${theme.primaryAlpha}`,
+          }}>
             <Log logs={state.logs} />
           </Column.item>
         </Column.container>

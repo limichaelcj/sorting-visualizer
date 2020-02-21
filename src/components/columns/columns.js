@@ -10,7 +10,7 @@ export const Columns = styled.div`
   }
 
   @media only screen and (min-width: ${props => breakpoints[props.break] || breakpoints.sm}px) {
-    flex-direction: row;
+    flex-direction: ${props => props.reverse ? 'row-reverse' : 'row'};
     & > *:not(:first-child) {
       margin-top: 0;
       margin-left: ${props => props.gap || 0}rem;

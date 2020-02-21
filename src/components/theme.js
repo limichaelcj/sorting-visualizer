@@ -16,6 +16,7 @@ export default ({
   secondaryAlpha: getAlpha(secondary),
   secondaryFade: getFade(secondary),
   background: white,
+  backgroundSoft: chroma(white).darken(0.1),
   backgroundOff: chroma(white).darken(0.25),
   text: text,
   textOff: chroma(text).brighten(2),
