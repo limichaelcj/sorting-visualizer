@@ -7,7 +7,7 @@ export default styled.button`
   font-size: ${props => props.size + 'rem'};
   height: ${props => props.size * 2.2 + 'rem'};
   width: ${props => props.size * 2.2 + 'rem'};
-  color: inherit;
+  color: ${theme.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,15 +25,11 @@ export default styled.button`
     }
   }
   &:hover:not(:disabled) {
-    &, * {
-      color: ${theme.primary};
-    }
-    background-color: ${theme.primaryFade};
+    background-color: ${theme.primaryAlpha};
   }
   &:active:not(:disabled) {
-    color: ${theme.primary};
-    background-color: ${theme.primaryFade};
-    border-color: ${theme.primary};
+    color: ${theme.textInvert};
+    background-color: ${theme.primary};
   }
   &, &:visited {
     outline: none;

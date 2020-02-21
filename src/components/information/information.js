@@ -10,7 +10,7 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
 
   return (
     <StyledInformation>
-      <Row gap='1rem' style={{padding: '.5rem 0', borderBottom: '1px dotted black'}}>
+      <Row gap='1rem' style={{padding: '.5rem', borderBottom: '1px dotted black'}}>
         <IconButton
           onClick={runningThis ? handlePause : handlePlay}
           icon={runningThis ? faPause : faPlay}
@@ -20,7 +20,7 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
           <h2 style={{margin: 0}}>{algorithm.name}</h2>
         </div>
       </Row>
-      <div style={{padding: '1rem 1rem 1rem 3.2rem'}}>
+      <div style={{padding: '1rem 1rem 1rem 3.7rem'}}>
         {algorithm.description.map((p,i) => (
           <p key={i}>{p}</p>
         ))}
