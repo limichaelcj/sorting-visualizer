@@ -10,7 +10,7 @@ export default ({
   background: 'white',
   backgroundOff: chroma('white').darken(0.5),
   text: text,
-  textOff: chroma(text).brighten(1),
+  textOff: chroma(text).brighten(2),
   disabled: chroma(text).brighten(4),
   textInvert: 'white',
   array: {

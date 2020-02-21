@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import theme from '../theme'
 
 export default styled.div`
   position: relative;
@@ -8,5 +9,5 @@ export default styled.div`
   min-width: 100%;
   flex-direction: row;
   align-items: flex-end;
-  border: 1px solid black;
+  border-bottom: 2px solid ${theme.text};
 `;

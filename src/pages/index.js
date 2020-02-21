@@ -10,14 +10,14 @@ import Control from '../components/control/control'
 import Information from '../components/information/information'
 import { generateArray } from '../lib/array'
 
-import insertion_sort from '../lib/algorithms/insertionSort'
-import selection_sort from '../lib/algorithms/selectionSort'
-import bubble_sort from '../lib/algorithms/bubbleSort'
+import insertionSort from '../lib/algorithms/insertionSort'
+import selectionSort from '../lib/algorithms/selectionSort'
+import bubbleSort from '../lib/algorithms/bubbleSort'
 
 const algorithm = {
-  insertion_sort,
-  selection_sort,
-  bubble_sort,
+  insertionSort,
+  selectionSort,
+  bubbleSort,
 }
 
 // initial state used for React page state
@@ -28,7 +28,7 @@ const initialState = () => ({
   // name of running algorithm for handler mapping
   runningAlgorithm: null,
   // name of algorithm in information view
-  info: 'insertion_sort',
+  info: 'insertionSort',
   // index positions of algorithm
   selected: null,
   scanning: null,
@@ -54,7 +54,7 @@ const IndexPage = () => {
     reset: (name) => () => {
       // reset algorithm
       if (name) {
-        algorithm[name].reset();
+        algorithm[name].processor.reset();
       }
       // reset page state
       setTimeout(() => {
@@ -65,7 +65,7 @@ const IndexPage = () => {
       }, 20);
     },
     play: (name) => () => {
-      algorithm[name].run(state.array);
+      algorithm[name].processor.run(state.array);
       setState(state => ({
         ...state,
         runningAlgorithm: name,
@@ -73,7 +73,7 @@ const IndexPage = () => {
       }));
     },
     pause: (name) => () => {
-      algorithm[name].pause();
+      algorithm[name].processor.pause();
       setState(state => ({
         ...state,
         running: false,
@@ -91,8 +91,8 @@ const IndexPage = () => {
   // algorithm specifications requiring page state
   React.useEffect(() => {
     Object.values(algorithm).forEach(algo => {
-      algo.fps = 60;
-      algo.update = (processState) => {
+      algo.processor.fps = 60;
+      algo.processor.update = (processState) => {
         const { data, selected, scanning, flag, meta } = processState;
         setState(state => ({
           ...state,
@@ -103,7 +103,7 @@ const IndexPage = () => {
           counter: meta.counter,
         }));
       };
-      algo.onComplete = (processState) => {
+      algo.processor.onComplete = (processState) => {
         setState(state => {
           console.log(`${state.runningAlgorithm} complete with ${processState.meta.counter} operations.`);
           return {
@@ -134,13 +134,13 @@ const IndexPage = () => {
                 flag={state.flag}
               />
               <Control
-                algorithms={Object.keys(algorithm)}
+                algorithms={algorithm}
                 currentView={state.info}
                 handleReset={handler.reset(state.runningAlgorithm)}
                 handleViewInfo={handler.viewInfo}
               />
               <Information
-                algorithm={state.info}
+                algorithm={algorithm[state.info]}
                 running={state.running}
                 runningThis={state.running && state.runningAlgorithm === state.info}
                 handlePlay={handler.play(state.info)}
