@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import StyledItem from './item.css'
 import theme from '../theme'
 
-const ArrayItem = ({ size, selected, scanning, flagged }) => {
+const SimulatorItem = ({ size, selected, scanning, flagged }) => {
 
   return (
     <StyledItem
@@ -23,17 +23,17 @@ const ArrayItem = ({ size, selected, scanning, flagged }) => {
   );
 }
 
-ArrayItem.propTypes = {
+SimulatorItem.propTypes = {
   size: PropTypes.number.isRequired,
   selected: PropTypes.bool,
   scanning: PropTypes.bool,
   flagged: PropTypes.bool,
 }
 
-ArrayItem.defaultProps = {
+SimulatorItem.defaultProps = {
   selected: false,
   scanning: false,
   flagged: false,
 }
 
-export default ArrayItem
+export default SimulatorItem

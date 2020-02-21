@@ -5,7 +5,9 @@ import SEO from "../components/seo"
 import Container from '../components/container/container'
 import Column from '../components/columns/columns'
 import Title from '../components/title/title'
-import Array from '../components/array/array'
+import Simulator from '../components/simulator/simulator'
+import Row from '../components/ui/row'
+import Button from '../components/button/button'
 import Control from '../components/control/control'
 import Information from '../components/information/information'
 import Log from '../components/log/log'
@@ -22,19 +24,25 @@ const algorithm = {
   bubbleSort,
 }
 
+const arraySizes = [12, 30, 60, 100, 150, 200];
+
 // initial state used for React page state
-const initialState = () => ({
-  array: generateArray(10),
+const initialState = (size) => ({
+  array: generateArray(size),
   counter: 0,
   running: false,
   // name of running algorithm for handler mapping
   runningAlgorithm: null,
-  // name of algorithm in information view
-  info: 'insertionSort',
+  // an algorithm is in progress
+  inProgress: false,
   // index positions of algorithm
   selected: null,
   scanning: null,
   flag: null,
+  // persisting state
+  arraySize: arraySizes[2],
+  // name of algorithm in information view
+  info: 'insertionSort',
   // previous completed algorithm run data
   logs: [],
 })
@@ -55,6 +63,13 @@ const IndexPage = () => {
 
   // algorithm control handlers
   const handler = {
+    setArraySize: (arraySize) => () => {
+      setState(state => ({
+        ...state,
+        arraySize,
+        array: state.inProgress ? state.array : generateArray(arraySize),
+      }));
+    },
     reset: (name) => () => {
       // reset algorithm
       if (name) {
@@ -64,6 +79,8 @@ const IndexPage = () => {
       setTimeout(() => {
         setState(state => ({
           ...initialState(),
+          array: generateArray(state.arraySize),
+          arraySize: state.arraySize,
           info: state.info,
           logs: state.logs,
         }));
@@ -74,6 +91,7 @@ const IndexPage = () => {
       setState(state => ({
         ...state,
         runningAlgorithm: name,
+        inProgress: true,
         running: true,
       }));
     },
@@ -117,6 +135,7 @@ const IndexPage = () => {
             scanning: null,
             flag: null,
             running: false,
+            inProgress: false,
             logs: [
               ...state.logs,
               {
@@ -130,8 +149,6 @@ const IndexPage = () => {
     });
   }, []);
 
-  console.log(state.logs)
-
   return (
     <Layout>
       <SEO title="Home" />
@@ -141,7 +158,7 @@ const IndexPage = () => {
         <Column.container break="md" gap="1">
           <Column.item size={9}>
             <Container size="md">
-              <Array
+              <Simulator
                 items={state.array}
                 selected={state.selected}
                 scanning={state.scanning}
@@ -149,6 +166,18 @@ const IndexPage = () => {
                 counter={state.counter}
                 algorithmName={algorithm[state.runningAlgorithm || state.info].shortName}
               />
+              <Row stretch>
+                {arraySizes.map(v => (
+                  <Button
+                    key={v}
+                    onClick={handler.setArraySize(v)}
+                    active={state.arraySize === v}
+                    style={{padding: '0.3em', fontSize: '0.8rem'}}
+                  >
+                    {v}
+                  </Button>
+                ))}
+              </Row>
               <Control
                 algorithms={algorithm}
                 currentView={state.info}
@@ -157,7 +186,7 @@ const IndexPage = () => {
               />
               <Information
                 algorithm={algorithm[state.info]}
-                running={state.running}
+                inProgress={state.inProgress}
                 runningThis={state.running && state.runningAlgorithm === state.info}
                 handlePlay={handler.play(state.info)}
                 handlePause={handler.pause(state.info)}

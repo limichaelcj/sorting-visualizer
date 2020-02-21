@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledMeta from './meta.css'
 
-const ArrayMeta = ({ operations, algorithm }) => {
+const SimulatorMeta = ({ operations, algorithm }) => {
   return (
     <StyledMeta>
       <li><span>Algorithm:</span> {algorithm}</li>
@@ -11,9 +11,9 @@ const ArrayMeta = ({ operations, algorithm }) => {
   )
 }
 
-ArrayMeta.propTypes = {
+SimulatorMeta.propTypes = {
   operations: PropTypes.number,
   algorithm: PropTypes.string,
 }
 
-export default ArrayMeta
+export default SimulatorMeta

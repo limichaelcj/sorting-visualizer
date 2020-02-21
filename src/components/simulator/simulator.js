@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import StyledArray from './array.css'
+import StyledSimulator from './simulator.css'
 import Item from './item'
 import Meta from './meta'
 import Center from '../ui/center'
 
 // items: array of objects = { id: int, value: int }
 
-const Array = ({ items, selected, scanning, flag, counter, algorithmName }) => {
+const Simulator = ({ items, selected, scanning, flag, counter, algorithmName }) => {
 
   // store max value
   const [max, setMax] = React.useState(0);
@@ -19,7 +19,7 @@ const Array = ({ items, selected, scanning, flag, counter, algorithmName }) => {
   return (
     <div>
       <Meta algorithm={algorithmName} operations={counter} />
-      <StyledArray>
+      <StyledSimulator>
         {items.length > 0 ? items.map((item,i) => (
           <Item
             key={item.id}
@@ -31,12 +31,12 @@ const Array = ({ items, selected, scanning, flag, counter, algorithmName }) => {
         )) : (
           <Center>✘</Center>
         )}
-      </StyledArray>
+      </StyledSimulator>
     </div>
   )
 }
 
-Array.propTypes = {
+Simulator.propTypes = {
   items: PropTypes.array,
   current: PropTypes.number,
   scanning: PropTypes.number,
@@ -45,8 +45,8 @@ Array.propTypes = {
   algorithmName: PropTypes.string,
 }
 
-Array.defaultProps = {
+Simulator.defaultProps = {
   items: [],
 }
 
-export default Array
+export default Simulator
