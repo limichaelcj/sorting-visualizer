@@ -163,9 +163,7 @@ const IndexPage = () => {
             </Container>
           </Column.item>
           <Column.item size={3}>
-            <Box style={{marginBottom: '1rem'}}>
-              Operations: {state.counter}
-            </Box>
+            <Box><strong>Operations: {state.counter}</strong></Box>
             <Log logs={state.logs} />
           </Column.item>
         </Column.container>
