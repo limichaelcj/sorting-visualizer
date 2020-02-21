@@ -19,7 +19,7 @@ const Log = ({ logs }) => {
           ))}
         </StyledLog>
       ) : (
-        <Message>No logs yet. Press play to run an algorithm.</Message>
+        <Message font="mono">No logs yet.</Message>
       )}
     </div>
   )
