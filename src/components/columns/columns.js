@@ -4,9 +4,17 @@ import breakpoints from '../breakpoints'
 export const Columns = styled.div`
   display: flex;
   flex-direction: column;
+  & > *:not(:first-child) {
+    margin-left: 0;
+    margin-top: ${props => props.gap || 0}rem;
+  }
 
   @media only screen and (min-width: ${props => breakpoints[props.break] || breakpoints.sm}px) {
     flex-direction: row;
+    & > *:not(:first-child) {
+      margin-top: 0;
+      margin-left: ${props => props.gap || 0}rem;
+    }
   }
 `;
 

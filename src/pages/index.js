@@ -3,11 +3,13 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from '../components/container/container'
+import Box from '../components/box/box'
 import Column from '../components/columns/columns'
 import Title from '../components/title/title'
 import Array from '../components/array/array'
 import Control from '../components/control/control'
 import Information from '../components/information/information'
+import Log from '../components/log/log'
 import { generateArray } from '../lib/array'
 
 import insertionSort from '../lib/algorithms/insertionSort'
@@ -22,7 +24,7 @@ const algorithm = {
 
 // initial state used for React page state
 const initialState = () => ({
-  array: generateArray(80),
+  array: generateArray(10),
   counter: 0,
   running: false,
   // name of running algorithm for handler mapping
@@ -33,6 +35,8 @@ const initialState = () => ({
   selected: null,
   scanning: null,
   flag: null,
+  // previous completed algorithm run data
+  logs: [],
 })
 
 const IndexPage = () => {
@@ -61,6 +65,7 @@ const IndexPage = () => {
         setState(state => ({
           ...initialState(),
           info: state.info,
+          logs: state.logs,
         }));
       }, 20);
     },
@@ -112,11 +117,20 @@ const IndexPage = () => {
             scanning: null,
             flag: null,
             running: false,
+            logs: [
+              ...state.logs,
+              {
+                algorithm: algorithm[state.runningAlgorithm].shortName,
+                count: state.counter,
+              },
+            ]
           }
         })
       }
     });
   }, []);
+
+  console.log(state.logs)
 
   return (
     <Layout>
@@ -124,7 +138,7 @@ const IndexPage = () => {
       <Title>{data.site.siteMetadata.title}</Title>
 
       <Container size="lg" style={{padding: '0 1rem'}}>
-        <Column.container break="md">
+        <Column.container break="md" gap="1">
           <Column.item size={9}>
             <Container size="md">
               <Array
@@ -149,7 +163,10 @@ const IndexPage = () => {
             </Container>
           </Column.item>
           <Column.item size={3}>
-            <pre>Operations: {state.counter}</pre>
+            <Box style={{marginBottom: '1rem'}}>
+              Operations: {state.counter}
+            </Box>
+            <Log logs={state.logs} />
           </Column.item>
         </Column.container>
       </Container>

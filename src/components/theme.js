@@ -6,13 +6,18 @@ const text = 'black';
 
 export default ({
   primary: primary,
+  primaryAlpha: chroma(primary).alpha(0.25),
   primaryFade: chroma(primary).brighten(3).desaturate(.2),
   background: 'white',
-  backgroundOff: chroma('white').darken(0.5),
+  backgroundOff: chroma('white').darken(0.25),
   text: text,
   textOff: chroma(text).brighten(2),
-  disabled: chroma(text).brighten(4),
   textInvert: 'white',
+  disabled: chroma(text).brighten(4),
+  font: {
+    main: 'sans-serif',
+    mono: 'monospace',
+  },
   array: {
     selected: 'red',
     scanning: 'blue',

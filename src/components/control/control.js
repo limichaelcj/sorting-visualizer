@@ -27,7 +27,7 @@ const Control = ({ algorithms, currentView, handleReset, handleViewInfo }) => {
 }
 
 Control.propTypes = {
-  algorithms: PropTypes.array,
+  algorithms: PropTypes.object,
   currentView: PropTypes.string,
   handleReset: PropTypes.func,
   handleViewInfo: PropTypes.func,

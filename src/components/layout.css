@@ -338,8 +338,7 @@ ul {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  list-style-position: outside;
-  list-style-image: none;
+  list-style: none;
 }
 ol {
   margin-left: 1.45rem;
@@ -506,23 +505,13 @@ th {
   font-weight: bold;
 }
 li {
-  margin-bottom: calc(1.45rem / 2);
+  margin: none;
 }
 ol li {
   padding-left: 0;
 }
 ul li {
   padding-left: 0;
-}
-li > ol {
-  margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
-}
-li > ul {
-  margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
 }
 blockquote *:last-child {
   margin-bottom: 0;
@@ -532,9 +521,6 @@ li *:last-child {
 }
 p *:last-child {
   margin-bottom: 0;
-}
-li > p {
-  margin-bottom: calc(1.45rem / 2);
 }
 code {
   font-size: 0.85rem;

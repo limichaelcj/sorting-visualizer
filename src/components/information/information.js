@@ -36,7 +36,7 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
 }
 
 Information.propTypes = {
-  algorithm: PropTypes.string,
+  algorithm: PropTypes.object,
   running: PropTypes.bool,
   runningThis: PropTypes.bool,
   handlePlay: PropTypes.func,
