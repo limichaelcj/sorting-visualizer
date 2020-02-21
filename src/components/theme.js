@@ -10,7 +10,6 @@ const secondary = '#2AA464';
 const secondaryAlpha = getAlpha(secondary);
 const secondaryFade = getFade(secondary);
 const text = '#222';
-const textAlpha = getAlpha(text);
 const white = '#fff';
 
 export default ({
@@ -25,7 +24,6 @@ export default ({
   backgroundOff: chroma(white).darken(0.25),
   text: text,
   textOff: chroma(text).brighten(2),
-  textAlpha,
   textInvert: white,
   disabled: chroma(text).brighten(4),
   font: {
