@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import theme from '../theme'
-import breakpoints from '../breakpoints'
 
 export default styled.ul`
   margin: 0;

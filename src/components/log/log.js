@@ -11,7 +11,7 @@ const Log = ({ logs }) => {
       {logs.length > 0 ? (
         <StyledLog>
           {logs.map((log, i) => (
-            <li>
+            <li key={i}>
               <span>{i+1}.</span>
               <span>{log.algorithm}:</span>
               <span>{log.count}</span>

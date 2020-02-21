@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Button from './button'
 import theme from '../theme'
 
 export default styled.button`

@@ -1,7 +1,6 @@
 import chroma from 'chroma-js'
 
 const primary = 'dodgerblue';
-const secondary = '#2B4570';
 const text = 'black';
 
 export default ({
