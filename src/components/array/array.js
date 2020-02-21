@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledArray from './array.css'
 import Item from './item'
+import Meta from './meta'
 import Center from '../ui/center'
 
 // items: array of objects = { id: int, value: int }
 
-const Array = ({ items, selected, scanning, flag }) => {
+const Array = ({ items, selected, scanning, flag, counter, algorithmName }) => {
 
   // store max value
   const [max, setMax] = React.useState(0);
@@ -16,19 +17,22 @@ const Array = ({ items, selected, scanning, flag }) => {
   }, [items])
 
   return (
-    <StyledArray>
-      {items.length > 0 ? items.map((item,i) => (
-        <Item
-          key={item.id}
-          size={(item.value / max) * 100}
-          selected={selected === i}
-          scanning={scanning === i}
-          flagged={flag === i}
-        />
-      )) : (
-        <Center>✘</Center>
-      )}
-    </StyledArray>
+    <div>
+      <Meta algorithm={algorithmName} operations={counter} />
+      <StyledArray>
+        {items.length > 0 ? items.map((item,i) => (
+          <Item
+            key={item.id}
+            size={(item.value / max) * 100}
+            selected={selected === i}
+            scanning={scanning === i}
+            flagged={flag === i}
+            />
+        )) : (
+          <Center>✘</Center>
+        )}
+      </StyledArray>
+    </div>
   )
 }
 
@@ -37,6 +41,8 @@ Array.propTypes = {
   current: PropTypes.number,
   scanning: PropTypes.number,
   flag: PropTypes.number,
+  counter: PropTypes.number,
+  algorithmName: PropTypes.string,
 }
 
 Array.defaultProps = {

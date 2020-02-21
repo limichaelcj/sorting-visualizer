@@ -120,7 +120,7 @@ const IndexPage = () => {
             logs: [
               ...state.logs,
               {
-                algorithm: algorithm[state.runningAlgorithm].shortName,
+                algorithm: algorithm[state.runningAlgorithm].name,
                 count: state.counter,
               },
             ]
@@ -146,6 +146,8 @@ const IndexPage = () => {
                 selected={state.selected}
                 scanning={state.scanning}
                 flag={state.flag}
+                counter={state.counter}
+                algorithmName={algorithm[state.runningAlgorithm || state.info].shortName}
               />
               <Control
                 algorithms={algorithm}
@@ -163,7 +165,7 @@ const IndexPage = () => {
             </Container>
           </Column.item>
           <Column.item size={3}>
-            <Box><strong>Operations: {state.counter}</strong></Box>
+            <Box><strong>COMPLETED RUNS</strong></Box>
             <Log logs={state.logs} />
           </Column.item>
         </Column.container>
