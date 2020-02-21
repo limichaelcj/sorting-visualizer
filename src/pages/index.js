@@ -3,13 +3,13 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Container from '../components/container/container'
-import Box from '../components/box/box'
 import Column from '../components/columns/columns'
 import Title from '../components/title/title'
 import Array from '../components/array/array'
 import Control from '../components/control/control'
 import Information from '../components/information/information'
 import Log from '../components/log/log'
+import Footer from '../components/footer/footer'
 import { generateArray } from '../lib/array'
 
 import insertionSort from '../lib/algorithms/insertionSort'
@@ -170,6 +170,7 @@ const IndexPage = () => {
         </Column.container>
       </Container>
 
+      <Footer />
     </Layout>
   )
 }

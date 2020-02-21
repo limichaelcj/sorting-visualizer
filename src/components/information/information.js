@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import StyledInformation from './information.css'
 import Row from '../ui/row'
 import IconButton from '../button/icon'
+import Link from '../link/link'
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 const Information = ({ algorithm, running, runningThis, handlePlay, handlePause }) => {
@@ -26,9 +27,9 @@ const Information = ({ algorithm, running, runningThis, handlePlay, handlePause 
         <p><em>
           Source:
           {` `}
-          <a href={algorithm.hyperlink} target="_blank" rel="noopener noreferrer">
+          <Link href={algorithm.hyperlink} target="_blank" rel="noopener noreferrer">
             {algorithm.source}
-          </a>
+          </Link>
         </em></p>
       </div>
     </StyledInformation>
