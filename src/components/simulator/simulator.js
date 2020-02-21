@@ -19,7 +19,7 @@ const Simulator = ({ items, selected, scanning, flag, counter, algorithmName }) 
   return (
     <div>
       <Meta algorithm={algorithmName} operations={counter} />
-      <StyledSimulator>
+      <StyledSimulator gap={items.length <= 100}>
         {items.length > 0 ? items.map((item,i) => (
           <Item
             key={item.id}

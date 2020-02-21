@@ -1,12 +1,9 @@
 import styled from 'styled-components'
 import breakpoints from '../breakpoints'
 
-export default styled.div`
+export default styled.li`
   flex: 1 1 auto;
-
-  @media only screen and (min-width: ${breakpoints.sm}px) {
-    &:not(:first-child) {
-      margin-left: 2px;
-    }
-  }
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  list-style: none;
 `;
