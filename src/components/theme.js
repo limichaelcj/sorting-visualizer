@@ -25,6 +25,7 @@ export default ({
   backgroundOff: chroma(white).darken(0.25),
   text: text,
   textOff: chroma(text).brighten(2),
+  textAlpha,
   textInvert: white,
   disabled: chroma(text).brighten(4),
   font: {

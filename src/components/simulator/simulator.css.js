@@ -10,7 +10,7 @@ export default styled.div`
   flex-direction: row;
   align-items: flex-end;
   border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 2px solid ${theme.text};
+  border-bottom: 2px solid ${theme.secondary};
 
   ${props => props.gap && `
     & > li:not(:first-child) {
