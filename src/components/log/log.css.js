@@ -14,7 +14,7 @@ export default styled.ul`
     margin: 0;
     display: block;
     padding: 0.5rem 0.8rem;
-    background-color: ${theme.primaryFade};
+    background-color: ${theme.backgroundOff};
     &:not(:first-child) {
       border-bottom: 1px solid ${theme.primaryAlpha};
     }

@@ -120,7 +120,7 @@ const IndexPage = () => {
             logs: [
               ...state.logs,
               {
-                algorithm: algorithm[state.runningAlgorithm].name,
+                algorithm: algorithm[state.runningAlgorithm].shortName,
                 count: state.counter,
               },
             ]
@@ -165,7 +165,6 @@ const IndexPage = () => {
             </Container>
           </Column.item>
           <Column.item size={3}>
-            <Box><strong>COMPLETED RUNS</strong></Box>
             <Log logs={state.logs} />
           </Column.item>
         </Column.container>
