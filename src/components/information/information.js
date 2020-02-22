@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledInformation from './information.css'
+import Article from './article.css'
 import Row from '../ui/row'
 import IconButton from '../button/icon'
 import Link from '../link/link'
@@ -20,7 +21,7 @@ const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, 
           <h2 style={{margin: 0}}>{algorithm.name}</h2>
         </div>
       </Row>
-      <div style={{padding: '1rem 1rem 1rem 3.7rem'}}>
+      <Article>
         {algorithm.description.map((p,i) => (
           <p key={i}>{p}</p>
         ))}
@@ -31,7 +32,7 @@ const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, 
             {algorithm.source}
           </Link>
         </em></p>
-      </div>
+    </Article>
     </StyledInformation>
   )
 }
