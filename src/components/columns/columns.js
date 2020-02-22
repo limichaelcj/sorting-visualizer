@@ -19,7 +19,7 @@ export const Columns = styled.div`
 `;
 
 export const Column = styled.div`
-  flex: ${props => props.size && props.size > 0 && props.size <= 12 ? `0 0 ${100 / 12 * props.size}%` : '1 1 auto' };
+  flex: ${props => props.size && props.size > 0 && props.size <= 12 ? `1 1 ${100 / 12 * props.size}%` : '1 1 auto' };
 `;
 
 export default {

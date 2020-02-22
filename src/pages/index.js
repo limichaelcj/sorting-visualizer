@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { HideSmall } from '../components/ui/responsive'
 import Container from '../components/container/container'
 import Column from '../components/columns/columns'
 import Title from '../components/title/title'
@@ -156,9 +157,12 @@ const IndexPage = () => {
       <SEO title="Home" />
       <Title>{data.site.siteMetadata.title}</Title>
 
-      <Container size="xl" style={{marginLeft: 0, maxWidth: 1480}}>
+      <Container size="xl" style={{marginLeft: 0}}>
         <Column.container break="md" reverse>
-          <Column.item size={9} style={{padding: '0 1rem'}}>
+          <HideSmall size="lg">
+            <Column.item size={2} />
+          </HideSmall>
+          <Column.item size={8} style={{padding: '0 1rem'}}>
               <Simulator
                 items={state.array}
                 selected={state.selected}
@@ -196,7 +200,7 @@ const IndexPage = () => {
                 handlePause={handler.pause(state.info)}
               />
           </Column.item>
-          <Column.item size={3} style={{
+          <Column.item size={2} style={{
             backgroundColor: theme.backgroundSoft,
             borderRight: `1px solid ${theme.primaryAlpha}`,
           }}>

@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledLog from './log.css'
+import LogWrapper from './wrapper.css'
 import LogTitle from './title.css'
 import Message from '../message/message'
 
 const Log = ({ logs }) => {
   return (
-    <div>
+    <LogWrapper>
       <LogTitle>Run Log</LogTitle>
       {logs.length > 0 ? (
         <StyledLog>
@@ -21,7 +22,7 @@ const Log = ({ logs }) => {
       ) : (
         <Message font="mono">No logs yet.</Message>
       )}
-    </div>
+    </LogWrapper>
   )
 }
 

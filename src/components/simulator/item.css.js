@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import breakpoints from '../breakpoints'
 
 export default styled.li`
   flex: 1 1 auto;

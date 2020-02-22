@@ -7,5 +7,5 @@ export default styled.footer`
   font-size: 0.6rem;
   text-transform: uppercase;
   padding: 0.2rem;
-  background-color: ${theme.backgroundOff};
+  border-top: 1px solid ${theme.backgroundOff};
 `;

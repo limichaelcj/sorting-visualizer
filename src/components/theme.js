@@ -14,11 +14,11 @@ const text = '#222';
 
 export default ({
   primary: primary,
-  primaryAlpha: getAlpha(primary),
-  primaryFade: getFade(primary),
+  primaryAlpha,
+  primaryFade,
   secondary: secondary,
-  secondaryAlpha: secondaryAlpha,
-  secondaryFade: secondaryFade,
+  secondaryAlpha,
+  secondaryFade,
   background: white,
   backgroundSoft: chroma(white).darken(0.1),
   backgroundOff: chroma(white).darken(0.25),

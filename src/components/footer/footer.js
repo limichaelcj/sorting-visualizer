@@ -5,7 +5,7 @@ import Link from '../link/link'
 const Footer = (props) => {
   return (
     <StyledFooter>
-      Built by <Link href="https://mcli.dev">@mcli830</Link>
+      Developed by <Link href="https://mcli.dev">Michael Li</Link>
     </StyledFooter>
   )
 }
