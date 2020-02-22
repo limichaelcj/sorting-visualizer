@@ -37,6 +37,7 @@ const initialState = (size) => ({
   runningAlgorithm: null,
   // an algorithm is in progress
   inProgress: false,
+  completedRun: false,
   // index positions of algorithm
   selected: null,
   scanning: null,
@@ -89,13 +90,18 @@ const IndexPage = () => {
       }, 20);
     },
     play: (name) => () => {
-      algorithm[name].processor.run(state.array);
-      setState(state => ({
-        ...state,
-        runningAlgorithm: name,
-        inProgress: true,
-        running: true,
-      }));
+      setState(state => {
+        const nextArray = state.completedRun ? generateArray(state.arraySize) : state.array;
+        algorithm[name].processor.run(nextArray);
+        return ({
+          ...state,
+          array: nextArray,
+          runningAlgorithm: name,
+          inProgress: true,
+          completedRun: false,
+          running: true,
+        })
+      });
     },
     pause: (name) => () => {
       algorithm[name].processor.pause();
@@ -138,6 +144,7 @@ const IndexPage = () => {
             flag: null,
             running: false,
             inProgress: false,
+            completedRun: true,
             logs: [
               ...state.logs,
               {
