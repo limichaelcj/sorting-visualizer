@@ -16,6 +16,6 @@ export const HideLarge = styled.div`
 `;
 
 export default {
-  hideSmall: HideSmall,
-  hideLarge: HideLarge,
+  HideSmall,
+  HideLarge,
 }
