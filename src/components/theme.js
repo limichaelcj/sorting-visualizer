@@ -23,6 +23,7 @@ export default ({
   backgroundSoft: chroma(white).darken(0.1),
   backgroundOff: chroma(white).darken(0.25),
   text: text,
+  textAlpha: getAlpha(text),
   textOff: chroma(text).brighten(2),
   textInvert: white,
   disabled: chroma(text).brighten(4),

@@ -6,6 +6,11 @@ import LogTitle from './title.css'
 import Message from '../message/message'
 
 const Log = ({ logs }) => {
+
+  const logNumber = (n) => {
+    return `${n < 100 && '0'}${n < 10 && '0'}${n}`;
+  }
+
   return (
     <LogWrapper>
       <LogTitle>Run Log</LogTitle>
@@ -13,7 +18,7 @@ const Log = ({ logs }) => {
         <StyledLog>
           {logs.map((log, i) => (
             <li key={i}>
-              <span><strong>{i+1}.</strong></span>
+              <span><strong>{logNumber(i+1)}</strong></span>
               <span>{log.algorithm}(<strong>{log.sample}</strong>)</span>
               <span><strong>{log.count}</strong></span>
             </li>

@@ -10,6 +10,7 @@ export default styled.ul`
   justify-content: flex-end;
 
   li {
+    position: relative;
     margin: 0;
     display: block;
     padding: 0.5rem 1rem;
@@ -19,8 +20,17 @@ export default styled.ul`
     }
     span {
       display: inline-block;
+      &:first-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 6px;
+        font-size: 0.8rem;
+        color: ${theme.textAlpha};
+      }
       &:nth-child(2) {
-        padding: 0 0.8rem;
+        padding-left: 1rem;
+        padding-right: .5rem;
       }
       &:last-child {
         color: ${theme.primary};
