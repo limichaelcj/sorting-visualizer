@@ -1,5 +1,4 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { HideSmall } from '../components/ui/responsive'
@@ -51,16 +50,6 @@ const initialState = (size) => ({
 })
 
 const IndexPage = () => {
-
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
   const [state, setState] = React.useState(initialState());
 
@@ -161,8 +150,8 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
-      <Title>{data.site.siteMetadata.title}</Title>
+      <SEO title="Sorting Visualizer" />
+      <Title>Sorting Algorithm Visualizer</Title>
 
       <Container size="xl" style={{marginLeft: 0}}>
         <Column.container break="md" reverse>

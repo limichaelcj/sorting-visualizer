@@ -34,6 +34,7 @@ export default ({
     selected: chroma('#EB6456').alpha(.8),
     scanning: chroma(primary).alpha(.8),
     flagged: chroma(secondary).brighten().desaturate(),
-    default: chroma('#CCDBDC').alpha(.8),
+    // default: chroma('#CCDBDC').alpha(.8),
+    default: chroma(white).darken(.5),
   }
 })
