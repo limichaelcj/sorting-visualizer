@@ -20,6 +20,8 @@ export const Columns = styled.div`
 
 export const Column = styled.div`
   flex: ${props => props.size && props.size > 0 && props.size <= 12 ? `1 1 ${100 / 12 * props.size}%` : '1 1 auto' };
+  display: ${props => ['row', 'column'].includes(props.flex) ? 'flex' : 'block'};
+  flex-direction: ${props => props.flex || 'auto'};
 `;
 
 export default {

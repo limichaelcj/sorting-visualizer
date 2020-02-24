@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import theme from '../theme'
+import breakpoints from '../breakpoints'
 
 export default styled.ul`
   margin: 0;
   font-family: ${theme.font.mono};
-  height: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  overflow-y: scroll;
+
+  height: auto;
+  max-height: 21rem;
 
   li {
     position: relative;
@@ -15,7 +16,7 @@ export default styled.ul`
     display: block;
     padding: 0.5rem 1rem;
     background-color: ${theme.backgroundOff};
-    &:not(:first-child) {
+    &:not(:last-child) {
       border-bottom: 1px solid ${theme.secondaryAlpha};
     }
     span {
@@ -36,5 +37,14 @@ export default styled.ul`
         color: ${theme.primary};
       }
     }
+  }
+
+  @media only screen and (min-width: ${breakpoints.md}px) {
+    height: 38rem;
+    max-height: 38rem;
+  }
+  @media only screen and (min-width: ${breakpoints.lg}px) {
+    height: 48rem;
+    max-height: 48rem;
   }
 `

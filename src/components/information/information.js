@@ -28,7 +28,7 @@ const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, 
         <p><em>
           Source:
           {` `}
-          <Link href={algorithm.hyperlink} target="_blank" rel="noopener noreferrer">
+          <Link href={algorithm.hyperlink} colored>
             {algorithm.source}
           </Link>
         </em></p>

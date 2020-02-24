@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { HideSmall } from '../components/ui/responsive'
+import { HideSmall, HideLarge } from '../components/ui/responsive'
 import Container from '../components/container/container'
 import Column from '../components/columns/columns'
 import Title from '../components/title/title'
@@ -11,6 +11,7 @@ import Button from '../components/button/button'
 import Control from '../components/control/control'
 import Information from '../components/information/information'
 import Log from '../components/log/log'
+import References from '../components/references/references'
 import Footer from '../components/footer/footer'
 import { generateArray } from '../lib/array'
 import theme from '../components/theme'
@@ -136,12 +137,13 @@ const IndexPage = () => {
             inProgress: false,
             completedRun: true,
             logs: [
-              ...state.logs,
               {
+                id: state.logs.length + 1,
                 algorithm: algorithm[state.runningAlgorithm].shortName,
                 count: state.counter,
                 sample: state.arraySize,
               },
+              ...state.logs,
             ]
           }
         })
@@ -157,7 +159,9 @@ const IndexPage = () => {
       <Container size="xl" style={{marginLeft: 0}}>
         <Column.container break="md" reverse>
           <HideSmall size="lg">
-            <Column.item size={2} />
+            <Column.item size={2}>
+              <References algorithms={algorithm} />
+            </Column.item>
           </HideSmall>
           <Column.item size={8} style={{padding: '0 1rem'}}>
               <Simulator
@@ -197,11 +201,11 @@ const IndexPage = () => {
                 handlePause={handler.pause(state.info)}
               />
           </Column.item>
-          <Column.item size={2} style={{
-            backgroundColor: theme.backgroundSoft,
-            borderRight: `1px solid ${theme.primaryAlpha}`,
-          }}>
+          <Column.item size={2}>
             <Log logs={state.logs} />
+            <HideLarge size="lg">
+              <References algorithms={algorithm} />
+            </HideLarge>
           </Column.item>
         </Column.container>
       </Container>

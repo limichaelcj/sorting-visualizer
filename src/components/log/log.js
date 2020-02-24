@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StyledLog from './log.css'
-import LogWrapper from './wrapper.css'
-import LogTitle from './title.css'
+import Wrapper from './wrapper.css'
+import Title from './title.css'
 import Message from '../message/message'
 
 const Log = ({ logs }) => {
@@ -12,22 +12,20 @@ const Log = ({ logs }) => {
   }
 
   return (
-    <LogWrapper>
-      <LogTitle>Run Log</LogTitle>
-      {logs.length > 0 ? (
-        <StyledLog>
-          {logs.map((log, i) => (
-            <li key={i}>
-              <span><strong>{logNumber(i+1)}</strong></span>
-              <span>{log.algorithm}(<strong>{log.sample}</strong>)</span>
-              <span><strong>{log.count}</strong></span>
-            </li>
-          ))}
-        </StyledLog>
-      ) : (
-        <Message font="mono">No logs yet.</Message>
-      )}
-    </LogWrapper>
+    <Wrapper>
+      <Title>Run Log</Title>
+      <StyledLog>
+        {logs.length ? logs.map((log, i, arr) => (
+          <li key={log.id}>
+            <span><strong>{logNumber(log.id)}</strong></span>
+            <span>{log.algorithm}(<strong>{log.sample}</strong>)</span>
+            <span><strong>{log.count}</strong></span>
+          </li>
+        )) : (
+          <Message font="mono">No logs yet.</Message>
+        )}
+      </StyledLog>
+    </Wrapper>
   )
 }
 

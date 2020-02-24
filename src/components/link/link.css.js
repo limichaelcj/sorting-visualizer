@@ -2,14 +2,12 @@ import styled from 'styled-components'
 import theme from '../theme'
 
 export default styled.a`
-  color: inherit;
   text-decoration: none;
-  color: ${theme.primary};
+  color: ${props => props.colored ? theme.primary : 'inherit'};
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
-  }
-  &:visited {
     color: ${theme.primary};
   }
 `;
