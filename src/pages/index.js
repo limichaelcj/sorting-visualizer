@@ -154,7 +154,7 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Sorting Visualizer" />
       <Title title="Sorting Visualizer">
-        Understanding popular sorting algorithms
+        <span>Understanding popular sorting algorithms</span>
       </Title>
 
       <Container size="xl" style={{marginLeft: 0}}>
