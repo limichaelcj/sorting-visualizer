@@ -34,9 +34,8 @@ insertionSort.algorithm = (state) => {
       // splice selected node, then insert it before scanning index (+1)
       return moveSelectedToScanned();
     default:
-      console.warn('Processor error: aborting algorithm.');
-      state.meta.abort();
-      return data;
+      console.warn('Processor default: aborting algorithm.');
+      return state.meta.abort();
   }
 
   function selectNextIndex(){

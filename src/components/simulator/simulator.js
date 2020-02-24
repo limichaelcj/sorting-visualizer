@@ -13,7 +13,8 @@ const Simulator = ({ items, selected, scanning, flag, counter, algorithmName }) 
   const [max, setMax] = React.useState(0);
   // only rerender on data change
   React.useEffect(() => {
-    setMax(Math.max(...items.map(item => item.value)));
+    // get maximum value from data items for relative height render
+    setMax(Math.max(...items.filter(item => !!item).map(item => item.value)));
   }, [items])
 
   return (
@@ -22,8 +23,8 @@ const Simulator = ({ items, selected, scanning, flag, counter, algorithmName }) 
       <StyledSimulator gap={items.length <= 100}>
         {items.length > 0 ? items.map((item,i) => (
           <Item
-            key={item.id}
-            size={(item.value / max) * 100}
+            key={i}
+            size={item && item.value ? (item.value / max) * 100 : 0}
             selected={selected === i}
             scanning={scanning === i}
             flagged={flag === i}

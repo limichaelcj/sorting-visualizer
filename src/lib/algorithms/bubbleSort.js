@@ -45,9 +45,8 @@ bubbleSort.algorithm = (state) => {
     case 'swap':
       return swapSelectedAndScanned();
     default:
-      console.warn('Processor error: aborting algorithm.');
-      state.meta.abort();
-      return data;
+      console.warn('Processor default: aborting algorithm.');
+      return state.meta.abort();
   }
 
   function startRound(){

@@ -18,11 +18,13 @@ import theme from '../components/theme'
 import insertionSort from '../lib/algorithms/insertionSort'
 import selectionSort from '../lib/algorithms/selectionSort'
 import bubbleSort from '../lib/algorithms/bubbleSort'
+import mergeSort from '../lib/algorithms/mergeSort'
 
 const algorithm = {
   insertionSort,
   selectionSort,
   bubbleSort,
+  mergeSort,
 }
 
 const arraySizes = [12, 30, 60, 100, 150, 200];
@@ -111,7 +113,6 @@ const IndexPage = () => {
   // algorithm specifications requiring page state
   React.useEffect(() => {
     Object.values(algorithm).forEach(algo => {
-      algo.processor.fps = 60;
       algo.processor.update = (processState) => {
         const { data, selected, scanning, flag, meta } = processState;
         setState(state => ({
@@ -125,7 +126,7 @@ const IndexPage = () => {
       };
       algo.processor.onComplete = (processState) => {
         setState(state => {
-          console.log(`${state.runningAlgorithm} complete with ${processState.meta.counter} operations.`);
+          console.log(`${algorithm[state.runningAlgorithm].name} complete with ${processState.meta.counter} operations.`);
           return {
             ...state,
             selected: null,

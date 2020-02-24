@@ -1,6 +1,6 @@
 class Processor {
 
-  static defaultFrame = 1000 / 30; // 30fps default
+  static defaultFrame = 1000 / 60; // 30fps default
   static processLimit = 20000;
 
   constructor(options = {}) {
@@ -10,6 +10,10 @@ class Processor {
     this._permit = options.permit || null;
     // algorithm function to process data
     this._algorithm = options.algorithm || null;
+    // optional helper middleware to transform data for render
+    // - activated after algorithm and before update
+    // - make sure not to mutate data!
+    this._renderTransform = options.onRender || null;
     // callback function to update view after each algorithm run
     this._update = options.update || null;
     // end condition
@@ -65,6 +69,13 @@ class Processor {
       throw new Error(`Processor algorithm must be a function.`);
     }
     this._algorithm = func;
+  }
+
+  set onRender(func){
+    if (typeof func !== "function") {
+      throw new Error(`Processor render transform must be a function.`);
+    }
+    this._renderTransform = func;
   }
 
   set update(func) {
@@ -199,8 +210,12 @@ class Processor {
       this._state.data = this._algorithm(this._state);
       // increment meta iterations for each algorithm run
       this._state.meta.counter++;
+
       // custom external updater provided by user for instance
-      this._update(this._state);
+      this._update({
+        ...this._state,
+        data: this._renderTransform ? this._renderTransform(this._state.data) : this._state.data,
+      });
     }
   }
 
@@ -212,7 +227,10 @@ class Processor {
     this._shouldReset = true;
     // custom cleanup
     if(this._onComplete) {
-      this._onComplete(this._state);
+      this._onComplete({
+        ...this._state,
+        data: this._renderTransform ? this._renderTransform(this._state.data) : this._state.data,
+      });
     }
   }
 
