@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import StyledInformation from './information.css'
 import Article from './article.css'
 import Row from '../ui/row'
+import { HideLarge } from '../ui/responsive'
 import IconButton from '../button/icon'
 import Link from '../link/link'
-import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faPause, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
-const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, handlePause }) => {
+const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, handlePause, hideArticle, toggleArticle }) => {
 
   return (
     <StyledInformation>
@@ -17,11 +18,17 @@ const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, 
           icon={running && runningThis ? faPause : faPlay}
           disabled={inProgress && !runningThis}
         />
-        <div>
+        <div style={{flex: '1 1 auto'}}>
           <h2 style={{margin: 0}}>{algorithm.name}</h2>
         </div>
+        <HideLarge size="md">
+          <IconButton
+            onClick={toggleArticle}
+            icon={hideArticle ? faEyeSlash : faEye}
+          />
+        </HideLarge>
       </Row>
-      <Article>
+      <Article hide={hideArticle}>
         {algorithm.description.map((p,i) => (
           <p key={i}>{p}</p>
         ))}
@@ -32,7 +39,8 @@ const Information = ({ algorithm, running, inProgress, runningThis, handlePlay, 
             {algorithm.source}
           </Link>
         </em></p>
-    </Article>
+      </Article>
+
     </StyledInformation>
   )
 }
@@ -44,6 +52,12 @@ Information.propTypes = {
   runningThis: PropTypes.bool,
   handlePlay: PropTypes.func,
   handlePause: PropTypes.func,
+  hideArticle: PropTypes.bool,
+  toggleArticle: PropTypes.func,
+}
+
+Information.defaultProps = {
+  hideArticle: false,
 }
 
 export default Information

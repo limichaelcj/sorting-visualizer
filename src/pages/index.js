@@ -47,6 +47,7 @@ const initialState = (size) => ({
   arraySize: arraySizes[2],
   // name of algorithm in information view
   info: 'insertionSort',
+  hideArticle: false,
   // previous completed algorithm run data
   logs: [],
 })
@@ -76,6 +77,7 @@ const IndexPage = () => {
           array: generateArray(state.arraySize),
           arraySize: state.arraySize,
           info: state.info,
+          hideArticle: state.hideArticle,
           logs: state.logs,
         }));
       }, 20);
@@ -107,6 +109,13 @@ const IndexPage = () => {
         ...state,
         info: name,
       }))
+    },
+    // hide or show article for mobile ux
+    toggleArticle: () => {
+      setState({
+        ...state,
+        hideArticle: !state.hideArticle,
+      })
     }
   }
 
@@ -200,6 +209,8 @@ const IndexPage = () => {
                 inProgress={state.inProgress}
                 handlePlay={handler.play(state.info)}
                 handlePause={handler.pause(state.info)}
+                hideArticle={state.hideArticle}
+                toggleArticle={handler.toggleArticle}
               />
           </Column.item>
           <Column.item size={2}>
