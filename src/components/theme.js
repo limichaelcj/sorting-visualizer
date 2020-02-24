@@ -3,7 +3,7 @@ import chroma from 'chroma-js'
 const getAlpha = c => chroma(c).alpha(.25);
 const getFade = c => chroma(c).brighten(2.5).desaturate(.2);
 
-const white = '#F5F5F6';
+const white = '#fff';
 const primary = '#4D9DE0';
 const primaryAlpha = getAlpha(primary);
 const primaryFade = getFade(primary);
