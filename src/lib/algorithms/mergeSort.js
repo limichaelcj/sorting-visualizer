@@ -13,8 +13,6 @@ import Processor from '../processor'
 
 const mergeSort = new Processor();
 
-// mergeSort.framerate = 800;
-
 mergeSort.initialState = {
   action: 'prepare',
   // current index of merge action
