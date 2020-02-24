@@ -6,6 +6,10 @@ export default styled.button`
   font-size: ${props => props.size + 'rem'};
   height: ${props => props.size * 2.2 + 'rem'};
   width: ${props => props.size * 2.2 + 'rem'};
+  min-height: ${props => props.size * 2.2 + 'rem'};
+  min-width: ${props => props.size * 2.2 + 'rem'};
+  max-height: ${props => props.size * 2.2 + 'rem'};
+  max-width: ${props => props.size * 2.2 + 'rem'};
   color: ${theme.primary};
   display: flex;
   justify-content: center;

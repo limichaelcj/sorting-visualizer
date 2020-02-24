@@ -5,6 +5,8 @@ export default styled.div`
   position: relative;
   display: flex;
   height: 400px;
+  min-height: 25vh;
+  max-height: 30vh;
   width: 100%;
   min-width: 100%;
   flex-direction: row;

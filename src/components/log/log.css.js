@@ -5,7 +5,7 @@ import breakpoints from '../breakpoints'
 export default styled.ul`
   margin: 0;
   font-family: ${theme.font.mono};
-  overflow-y: scroll;
+  overflow-y: auto;
 
   height: auto;
   max-height: 21rem;
