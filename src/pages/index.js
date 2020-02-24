@@ -14,7 +14,6 @@ import Log from '../components/log/log'
 import References from '../components/references/references'
 import Footer from '../components/footer/footer'
 import { generateArray } from '../lib/array'
-import theme from '../components/theme'
 
 import insertionSort from '../lib/algorithms/insertionSort'
 import selectionSort from '../lib/algorithms/selectionSort'

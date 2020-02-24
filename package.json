@@ -28,7 +28,10 @@
     "prettier": "^1.19.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "sorg",
+    "sorting",
+    "algorithm"
   ],
   "license": "MIT",
   "scripts": {
