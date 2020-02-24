@@ -8,7 +8,7 @@ import Message from '../message/message'
 const Log = ({ logs }) => {
 
   const logNumber = (n) => {
-    return `${n < 100 && '0'}${n < 10 && '0'}${n}`;
+    return `${n < 10 ? '00' : n < 100 ? '0' : ''}${n}`;
   }
 
   return (
