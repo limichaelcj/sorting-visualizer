@@ -17,6 +17,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: false,
+        fileName: false,
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `sorting-visualizer`,

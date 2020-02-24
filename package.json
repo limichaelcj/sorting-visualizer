@@ -1,13 +1,14 @@
 {
   "name": "sorting-visualizer",
   "private": true,
-  "description": "Visualize sorting algorithms in action.",
+  "description": "Understanding popular sorting algorithms.",
   "version": "0.1.0",
   "author": "Michael Li <li.michaelcj@gmail.com>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "babel-plugin-styled-components": "^1.10.7",
     "chroma-js": "^2.1.0",
     "gatsby": "^2.19.7",
     "gatsby-image": "^2.2.39",
@@ -15,6 +16,7 @@
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-plugin-styled-components": "^3.1.19",
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-sharp": "^2.3.13",
     "prop-types": "^15.7.2",
