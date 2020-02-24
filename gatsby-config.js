@@ -4,6 +4,7 @@ module.exports = {
     description: `Visualize sorting algorithms in action.`,
     author: `@mcli830`,
   },
+  pathPrefix: "/sorting-visualizer",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
