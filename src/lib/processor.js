@@ -1,7 +1,7 @@
 class Processor {
 
   static defaultFrame = 1000 / 60; // 30fps default
-  static processLimit = 20000;
+  static processLimit = 100000;
 
   constructor(options = {}) {
     // set fps render interval

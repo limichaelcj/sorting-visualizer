@@ -9,7 +9,7 @@ import ScrollMenu from '../menu/scroll'
 const Control = ({ algorithms, currentView, handleReset, handleViewInfo }) => {
 
   return (
-    <Row style={{paddingTop: '.5rem', marginTop: 2}}>
+    <Row style={{paddingLeft: '.5rem', marginTop: 2}}>
       <IconButton icon={faSyncAlt} onClick={handleReset} />
       <ScrollMenu direction="x" snap="start" fade style={{flex: '1 1 auto'}}>
         {Object.entries(algorithms).map(([key, algo]) => (

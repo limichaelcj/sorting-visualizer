@@ -27,7 +27,7 @@ const algorithm = {
   mergeSort,
 }
 
-const arraySizes = [12, 30, 60, 100, 150, 200];
+const arraySizes = [15, 30, 60, 100, 150, 200];
 
 // initial state used for React page state
 const initialState = (size) => ({
