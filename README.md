@@ -5,7 +5,7 @@ Educational tool for visualizing sorting algorithm patterns and understanding th
 
 #### Demo
 
-Take a look: [https://limichaelcj.github.io/sorting-visualizer](https://mcli830.github.io/sorting-visualizer)
+Take a look: [https://limichaelcj.github.io/sorting-visualizer](https://limichaelcj.github.io/sorting-visualizer)
 
 #### Preview
 
